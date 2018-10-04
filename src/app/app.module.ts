@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -7,6 +7,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NavigationComponent } from './navigation/navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
+
+import {
+  TranslatePipe,
+  CapitalizePipe,
+} from './pipes';
+
+import {
+  TranslateService,
+} from './services';
 
 // Material imports
 import {
@@ -20,15 +29,23 @@ import {
   MatToolbarModule,
   MatExpansionModule,
 } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
+
+export function setupTranslateFactory(service: TranslateService): Function {
+  return () => service.use('en');
+}
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent
+    NavigationComponent,
+    TranslatePipe,
+    CapitalizePipe,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -40,7 +57,18 @@ import {
     MatMenuModule,
     MatExpansionModule
   ],
-  providers: [],
+  providers: [
+
+    TranslateService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: setupTranslateFactory,
+      deps: [TranslateService],
+      multi: true
+    },
+    TranslatePipe,
+    CapitalizePipe,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
