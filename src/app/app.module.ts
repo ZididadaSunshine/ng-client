@@ -40,7 +40,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     AppComponent,
     NavigationComponent,
     TranslatePipe,
-    CapitalizePipe,
+    CapitalizePipe
   ],
   imports: [
     BrowserModule,

@@ -1,2 +1,2 @@
-export * from './capitalize.pipe';
-export * from './translate.pipe';
+export * from './capitalize/capitalize.pipe';
+export * from './translate/translate.pipe';
