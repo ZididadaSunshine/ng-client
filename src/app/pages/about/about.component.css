@@ -1,0 +1,8 @@
+.grid-container {
+    margin: 20px;
+    max-width: 768px;
+}
+
+.grid-container p {
+    text-align: justify;
+}

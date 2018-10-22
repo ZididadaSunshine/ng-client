@@ -24,10 +24,11 @@ import {
   MatMenuModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatExpansionModule,
+  MatExpansionModule, MatTableModule, MatPaginatorModule, MatSortModule,
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
+import { AboutComponent } from './pages/about/about.component';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('da');
@@ -39,6 +40,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     TranslatePipe,
     CapitalizePipe,
     HomeComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +57,9 @@ export function setupTranslateFactory(service: TranslateService): Function {
     MatMenuModule,
     MatExpansionModule,
     Routing,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [
 
