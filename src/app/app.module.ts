@@ -29,6 +29,8 @@ import {
   MatExpansionModule, MatTableModule, MatPaginatorModule, MatSortModule,
 } from '@angular/material';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -70,6 +72,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
+    NgxChartsModule
   ],
   providers: [
 

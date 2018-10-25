@@ -1,11 +1,10 @@
 <div class="grid-container">
   <h1 class="mat-h1">{{ "Dashboard" | translate | capitalize }}</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+  <mat-grid-list cols="1" rowHeight="500px">
+    <mat-grid-tile [colspan]="1">
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            {{card.title | translate | capitalize }}
             <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
             </button>
@@ -16,7 +15,12 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div>{{ "Card Content Here" | translate | capitalize }}</div>
+          <div class="flex">
+            <ngx-charts-bar-vertical [scheme]="colorScheme" [results]="testdata" [gradient]="gradient" [xAxis]="showXAxis"
+              [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+              [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
+            </ngx-charts-bar-vertical>
+          </div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
