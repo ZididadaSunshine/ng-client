@@ -30,3 +30,7 @@ yarn-error.log
 
 # rollup-test output
 /modules/rollup-test/dist/
+
+\.angulardoc\.json
+
+package-lock\.json
