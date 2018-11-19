@@ -33,10 +33,14 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { FormsModule } from '@angular/forms';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { BrandComponent } from './pages/brand/brand.component';
+import { LoginComponent } from './pages/login/login.component';
+import { JwtInterceptor } from './interceptors';
+
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('da');
@@ -50,6 +54,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     HomeComponent,
     AboutComponent,
     BrandComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -72,10 +77,15 @@ export function setupTranslateFactory(service: TranslateService): Function {
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
-    NgxChartsModule
+    NgxChartsModule,
+    FlexLayoutModule
   ],
   providers: [
-
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    },
     TranslateService,
     {
       provide: APP_INITIALIZER,

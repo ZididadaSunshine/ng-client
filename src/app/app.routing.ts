@@ -1,3 +1,4 @@
+import { LoginComponent } from './pages/login/login.component';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
@@ -11,6 +12,7 @@ const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'about', component: AboutComponent },
     { path: 'brand', component: BrandComponent },
+    { path: 'login', component: LoginComponent },
     { path: '**', redirectTo: '' }
 ];
 
