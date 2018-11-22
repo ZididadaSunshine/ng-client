@@ -1,46 +1,98 @@
 
-<div fxLayout="row" fxLayoutAlign="center center" style="margin-top: 10px;">
-  <div fxFlex="400px">
-    <!-- Login -->
-      <mat-card class="mat-elevation-z8">
-        <mat-card-title>
-          Login
-        </mat-card-title>
-        <mat-card-subtitle>
-          Enter your credentials to log in.
-        </mat-card-subtitle>
-        <mat-card-content>
-          <form class="example-form">
-            <table class="full-width" cellspacing="10px">
-              <tr>
-                <td>
-                  <mat-form-field class="full-width">
-                    <input matInput placeholder="E-mail" [(ngModel)]="email" name="email" required>
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td><mat-form-field class="full-width">
-                  <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
-                </mat-form-field></td>
-              </tr></table>
-          </form>
-          <mat-spinner style="margin: 0 auto;" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-        </mat-card-content>
 
-        <div layout="row" layout-align="center">
+<!-- TODO: -->
+Insert header...
+
+<mat-grid-list cols="5">
+  <!-- Login -->
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile>
+    <div fxLayout="row" fxLayoutAlign="center center" style="margin-top: 10px;">
+      <div fxFlex="400px">
+          <mat-card class="mat-elevation-z8">
+            <mat-card-title>
+              Login
+            </mat-card-title>
+            <mat-card-subtitle>
+              Enter your credentials to log in.
+            </mat-card-subtitle>
+            <mat-card-content>
+              <form class="example-form">
+                <table class="full-width" cellspacing="10px">
+                  <tr>
+                    <td>
+                      <mat-form-field class="full-width">
+                        <input matInput placeholder="E-mail" [(ngModel)]="loginEmail" name="loginEmail" required>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><mat-form-field class="full-width">
+                      <input matInput placeholder="Password" [(ngModel)]="loginPassword" type="password" name="loginPassword" required>
+                    </mat-form-field></td>
+                  </tr></table>
+              </form>
+              <mat-spinner style="margin: 0 auto;" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+            </mat-card-content>
             <mat-card-actions>
               <button mat-raised-button color="primary" (click)="login()">Login</button>
             </mat-card-actions>
+          </mat-card>
+      </div>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <h1>Or...</h1>
+  </mat-grid-tile>
+
+  <!-- Signup -->
+  <mat-grid-tile>
+    <div fxLayout="row" fxLayoutAlign="center center" style="margin-top: 10px;">
+      <div fxFlex="400px">
+          <mat-card class="mat-elevation-z8">
+            <mat-card-title>
+              Sign up
+            </mat-card-title>
+            <mat-card-subtitle>
+              Please enter your information below to create a new account.
+            </mat-card-subtitle>
+            <mat-card-content>
+              <form class="example-form">
+                <table class="full-width" cellspacing="10px">
+                  <tr>
+                    <td>
+                      <mat-form-field class="full-width">
+                        <input matInput placeholder="E-mail" [(ngModel)]="signupEmail" name="signupEmail" required>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <mat-form-field class="full-width">
+                        <input matInput placeholder="Password" [(ngModel)]="signupPassword" type="password" name="signupPassword" required>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <mat-form-field class="full-width">
+                        <input matInput placeholder="Confirm password" [(ngModel)]="signupConfirmPassword" type="password" name="signupConfirmPassword" required>
+                        <!-- TODO: Use mat-error to dynamically tell the user if the passwords match -->
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                </table>
+              </form>
+              <mat-spinner style="margin: 0 auto;" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+            </mat-card-content>
             <mat-card-actions>
-              <button mat-raised-button color="info" (click)="login()">Sign up</button>
+              <button mat-raised-button color="primary" (click)="signup()">Sign up</button>
             </mat-card-actions>
-        </div>
-        
+          </mat-card>
+      </div>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
 
-        
-      
-      </mat-card>
-
-  </div>
-</div>
+</mat-grid-list>

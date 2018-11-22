@@ -55,7 +55,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     HomeComponent,
     AboutComponent,
     BrandComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
