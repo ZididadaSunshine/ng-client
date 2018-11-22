@@ -22,16 +22,16 @@ export class LoginComponent implements OnInit {
     this.showSpinner = !this.showSpinner;
   }
 
-  async login() : Promise<void> {
+  async login(): Promise<void> {
     this.toggleSpinner();
     await sleep(5000);
-    if(this.email == 'admin' && this.password == 'admin'){
-    this.router.navigate(["home"]);
+    if (this.email === 'admin' && this.password === 'admin') {
+      this.router.navigate(['home']);
     } else {
-      alert("Invalid credentials");
+      alert('Invalid credentials');
     }
 
-    this.toggleSpinner()
+    this.toggleSpinner();
   }
 }
 
@@ -39,3 +39,4 @@ export class LoginComponent implements OnInit {
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+}
