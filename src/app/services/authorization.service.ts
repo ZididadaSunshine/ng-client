@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +17,22 @@ export class AuthorizationService {
     const subscription = new Subject<Boolean>();
 
     this.http.post(`${this.path}/login`, {email, password}).subscribe(data => {
-      subscription.next(true);
+      this.setSession(data.token);
+
+      subscription.next(this.getIsLoggedIn());
     }, error => {
       subscription.next(false);
     });
 
     return subscription;
+  }
+
+  setSession(token: String): void {
+    const decoded = jwt_decode(token);
+    console.log(decoded);
+  }
+
+  getIsLoggedIn(): Boolean {
+    return true;
   }
 }
