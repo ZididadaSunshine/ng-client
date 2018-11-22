@@ -27,6 +27,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatExpansionModule, MatTableModule, MatPaginatorModule, MatSortModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -78,8 +79,11 @@ export function setupTranslateFactory(service: TranslateService): Function {
     MatFormFieldModule,
     MatInputModule,
     NgxChartsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatProgressSpinnerModule
   ],
+
+  exports: [MatProgressSpinnerModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

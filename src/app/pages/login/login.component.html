@@ -1,26 +1,45 @@
+
 <div fxLayout="row" fxLayoutAlign="center center" style="margin-top: 10px;">
   <div fxFlex="400px">
+    <!-- Login -->
       <mat-card class="mat-elevation-z8">
+        <mat-card-title>
+          Login
+        </mat-card-title>
+        <mat-card-subtitle>
+          Enter your credentials to log in.
+        </mat-card-subtitle>
         <mat-card-content>
           <form class="example-form">
             <table class="full-width" cellspacing="10px">
               <tr>
                 <td>
                   <mat-form-field class="full-width">
-                    <input matInput placeholder="E-mail" name="email" required>
+                    <input matInput placeholder="E-mail" [(ngModel)]="email" name="email" required>
                   </mat-form-field>
                 </td>
               </tr>
               <tr>
                 <td><mat-form-field class="full-width">
-                  <input matInput placeholder="Password" type="password" name="password" required>
+                  <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
                 </mat-form-field></td>
               </tr></table>
           </form>
+          <mat-spinner style="margin: 0 auto;" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
         </mat-card-content>
-        <mat-card-actions>
-          <button mat-raised-button color="primary">Login</button>
-        </mat-card-actions>
+
+        <div layout="row" layout-align="center">
+            <mat-card-actions>
+              <button mat-raised-button color="primary" (click)="login()">Login</button>
+            </mat-card-actions>
+            <mat-card-actions>
+              <button mat-raised-button color="info" (click)="login()">Sign up</button>
+            </mat-card-actions>
+        </div>
+        
+
+        
+      
       </mat-card>
 
   </div>
