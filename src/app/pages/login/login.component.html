@@ -1,8 +1,28 @@
 
 
 <!-- TODO: -->
-Insert header...
+<mat-toolbar color="primary">
+    <span><mat-icon>mood</mat-icon></span>
+    <!-- Place title in the center -->
+    <div fxFlex></div>
+    <div class="header-title-subtitle">
+      <h1>SentiCloud</h1>
+      <p>Like SkyNet but for marketers</p>
+    </div>
+    <div fxFlex></div>
+    <!-- Menu button -->
+    <button mat-icon-button [mat-menu-trigger-for]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </mat-toolbar>
 
+  <!-- Menu -->
+  <mat-menu x-position="before" #menu="matMenu">
+    <button mat-menu-item>Home</button>
+    <button mat-menu-item>Brands</button>
+  </mat-menu>
+
+<!-- The login/signup forms -->
 <mat-grid-list cols="5">
   <!-- Login -->
   <mat-grid-tile></mat-grid-tile>
@@ -42,6 +62,7 @@ Insert header...
     </div>
   </mat-grid-tile>
 
+  <!-- Space between the two cards -->
   <mat-grid-tile>
     <h1>Or...</h1>
   </mat-grid-tile>
