@@ -51,9 +51,9 @@ export class LoginComponent {
   signup(): void {
     this.toggleSpinner();
     if (this.checkConfirmPassword()) {
-      // Sign that BIH up
+      this.snackbar.open('Signing you up 🅱️');
     } else {
-      alert('Passwords do not match.');
+      this.snackbar.open('Passwords do not match. Try again.');
     }
     this.toggleSpinner();
   }
