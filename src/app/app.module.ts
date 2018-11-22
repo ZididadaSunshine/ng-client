@@ -27,7 +27,9 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatExpansionModule, MatTableModule, MatPaginatorModule, MatSortModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatSnackBarModule,
+  MAT_SNACK_BAR_DEFAULT_OPTIONS
 } from '@angular/material';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -80,7 +82,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
     MatInputModule,
     NgxChartsModule,
     FlexLayoutModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
 
   exports: [MatProgressSpinnerModule],
@@ -96,6 +99,10 @@ export function setupTranslateFactory(service: TranslateService): Function {
       useFactory: setupTranslateFactory,
       deps: [TranslateService],
       multi: true
+    },
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      useValue: {duration: 2500}
     },
     TranslatePipe,
     CapitalizePipe,

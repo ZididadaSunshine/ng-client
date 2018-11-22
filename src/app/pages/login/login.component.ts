@@ -5,7 +5,7 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import {FormControl, FormGroupDirective, NgForm, Validators, ValidationErrors,
         FormGroup, FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {Router} from '@angular/router';
-
+import {MatDialog, MatSpinner, MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,8 @@ export class LoginComponent {
   signupPasswordForm: FormGroup;
 
   constructor (private router: Router,
-               private authorizationService: AuthorizationService) {}
+               private authorizationService: AuthorizationService,
+               private snackbar: MatSnackBar) {}
 
   // Login fields
   loginEmail: string;
@@ -38,13 +39,13 @@ export class LoginComponent {
   login(): void {
     this.toggleSpinner();
 
-    if (this.authorizationService.login(this.loginEmail, this.loginPassword)) {
-      this.router.navigate(['home']);
-    } else {
-      alert('Invalid credentials');
-    }
+    this.authorizationService.login(this.loginEmail, this.loginPassword).subscribe(success => {
+      this.toggleSpinner();
 
-    this.toggleSpinner();
+      if (!success) {
+        this.snackbar.open('Invalid credentials 🤯');
+      }
+    });
   }
 
   signup(): void {
