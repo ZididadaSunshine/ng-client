@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -12,15 +12,15 @@ export class AuthorizationService {
 
   constructor(private http: HttpClient) {}
 
-  login(email: String, password: String): boolean {
-    this.http.post(`${this.path}/login`, {email, password}).subscribe(data => {
-      console.log(data);
+  login(email: String, password: String): Observable<Boolean> {
+    const subscription = new Subject<Boolean>();
 
-      return true;
+    this.http.post(`${this.path}/login`, {email, password}).subscribe(data => {
+      subscription.next(true);
     }, error => {
-      console.log(error);
+      subscription.next(false);
     });
 
-    return false;
+    return subscription;
   }
 }

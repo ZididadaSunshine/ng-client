@@ -2,7 +2,7 @@ import { AuthorizationService } from './../../services/authorization.service';
 
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {MatDialog, MatSpinner} from '@angular/material'
+import {MatDialog, MatSpinner, MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,8 @@ import {MatDialog, MatSpinner} from '@angular/material'
 export class LoginComponent {
 
   constructor (private router: Router,
-               private authorizationService: AuthorizationService) { }
+               private authorizationService: AuthorizationService,
+               private snackbar: MatSnackBar) { }
 
   email: string;
   password: string;
@@ -27,12 +28,12 @@ export class LoginComponent {
   login(): void {
     this.toggleSpinner();
 
-    if (this.authorizationService.login(this.email, this.password)) {
-      this.router.navigate(['home']);
-    } else {
-      alert('Invalid credentials');
-    }
+    this.authorizationService.login(this.email, this.password).subscribe(success => {
+      this.toggleSpinner();
 
-    this.toggleSpinner();
+      if (!success) {
+        this.snackbar.open('Invalid credentials 🤯');
+      }
+    });
   }
 }
