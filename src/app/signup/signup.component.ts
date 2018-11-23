@@ -14,6 +14,7 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   showSpinner = false;
 
+  username: string;
   email: string;
   password: string;
   passwordConfirm: string;
