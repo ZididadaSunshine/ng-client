@@ -21,14 +21,8 @@ export class LoginComponent {
                private authorizationService: AuthorizationService,
                private snackbar: MatSnackBar) {}
 
-  // Login fields
-  loginEmail: string;
-  loginPassword: string;
-
-  // Signup fields
-  signupEmail: string;
-  signupPassword: string;
-  signupConfirmPassword: string;
+  email: string;
+  password: string;
 
   showSpinner = false;
 
@@ -39,26 +33,12 @@ export class LoginComponent {
   login(): void {
     this.toggleSpinner();
 
-    this.authorizationService.login(this.loginEmail, this.loginPassword).subscribe(success => {
+    this.authorizationService.login(this.email, this.password).subscribe(success => {
       this.toggleSpinner();
 
       if (!success) {
         this.snackbar.open('Invalid credentials 🤯');
       }
     });
-  }
-
-  signup(): void {
-    this.toggleSpinner();
-    if (this.checkConfirmPassword()) {
-      this.snackbar.open('Signing you up 🅱️');
-    } else {
-      this.snackbar.open('Passwords do not match. Try again.');
-    }
-    this.toggleSpinner();
-  }
-
-  checkConfirmPassword(): boolean {
-    return this.signupPassword === this.signupConfirmPassword;
   }
 }

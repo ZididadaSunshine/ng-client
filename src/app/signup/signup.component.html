@@ -20,13 +20,21 @@
               <tr>
                 <td><mat-form-field class="full-width">
                   <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
-                </mat-form-field></td>
-              </tr></table>
+                </mat-form-field>
+              </td>
+              </tr>
+              <tr>
+                <td><mat-form-field class="full-width">
+                  <input matInput placeholder="Password" [(ngModel)]="passwordConfirm" type="password" name="passwordConfirm" required>
+                </mat-form-field>
+              </td>
+              </tr>
+            </table>
           </form>
           <mat-spinner style="margin: 0 auto;" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="login()">Login</button>
+          <button mat-raised-button color="primary" (click)="signup()">Login</button>
         </mat-card-actions>
       </mat-card>
   </div>
