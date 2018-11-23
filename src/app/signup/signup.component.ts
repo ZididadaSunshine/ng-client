@@ -17,20 +17,14 @@ export class SignupComponent implements OnInit {
   password: string;
   passwordConfirm: string;
 
-  constructor(private formBuilder: FormBuilder,
-              private authorizationService: AuthorizationService,
-              private snackbar: MatSnackBar) {
-                this.signupForm = this.formBuilder.group({
-                  email : ['', Validators.required],
-                  password : ['', [Validators.required, Validators.minLength(8)]],
-                  passwordConfirm : ['', Validators.required]
-                });
-              }
+  constructor(private authorizationService: AuthorizationService,
+              private snackbar: MatSnackBar) { }
 
   ngOnInit() {
   }
 
   signup(): void {
+    this.toggleSpinner();
     if (this.isEmailInvalid && this.isPasswordInvalid && this.isPasswordConfirmInvalid) {
       this.snackbar.open('Please correct your signup information.');
       return;
@@ -38,18 +32,19 @@ export class SignupComponent implements OnInit {
 
     // Sign the dude up
     this.snackbar.open('Signed up ${email}.');
+    this.toggleSpinner();
   }
 
   isEmailInvalid(): boolean {
-    return this.signupForm.controls.email.errors.required;
+    return (this.email == null || this.email === ' ');
   }
 
   isPasswordInvalid(): boolean {
-    return this.signupForm.controls.password.errors.requried || this.signupForm.controls.password.errors.minLength(8);
+    return this.password == null || this.password.length < 8;
   }
 
   isPasswordConfirmInvalid(): boolean {
-    return this.signupForm.controls.passwordConfirm.errors.required || !this.isPasswordConfirmSame();
+    return this.passwordConfirm == null || !this.isPasswordConfirmSame();
   }
 
   isPasswordConfirmSame(): boolean {

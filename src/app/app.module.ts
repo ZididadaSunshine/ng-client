@@ -46,6 +46,7 @@ import { JwtInterceptor } from './interceptors';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavComponent } from './nav/nav.component';
 import { SignupComponent } from './signup/signup.component';
+import { AuthComponent } from './auth/auth.component';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('da');
@@ -62,6 +63,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     LoginComponent,
     NavComponent,
     SignupComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
