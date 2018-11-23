@@ -11,7 +11,7 @@ export class AccountService {
 
   constructor(private http: HttpClient) {}
 
-  create(email: String, password: String, firstName: String, lastName: String): Observable<any> {
-    return this.http.post(`${this.path}`, {email, password, firstName, lastName});
+  create(email: String, password: String, username: String): Observable<any> {
+    return this.http.post(`${this.path}`, {email, password, username});
   }
 }

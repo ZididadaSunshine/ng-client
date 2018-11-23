@@ -7,14 +7,4 @@
     <p>Like SkyNet but for marketers</p>
   </div>
   <div fxFlex></div>
-  <!-- Menu button -->
-  <button mat-icon-button [mat-menu-trigger-for]="menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
 </mat-toolbar>
-
-<!-- Menu -->
-<mat-menu x-position="before" #menu="matMenu">
-  <button mat-menu-item>{{ "Home" | translate | capitalize }}</button>
-  <button mat-menu-item>{{ "Brands" | translate | capitalize }}</button>
-</mat-menu>

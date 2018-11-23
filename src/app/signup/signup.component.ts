@@ -13,6 +13,7 @@ export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
   showSpinner = false;
+  signUpCompleted = false;
 
   username: string;
   email: string;
@@ -26,21 +27,21 @@ export class SignupComponent implements OnInit {
   }
 
   signUp(): void {
-    if (this.isEmailInvalid && this.isPasswordInvalid && this.isPasswordConfirmInvalid) {
+    /* if (this.isEmailInvalid && this.isPasswordInvalid && this.isPasswordConfirmInvalid) {
       this.snackbar.open('Please correct your signup information.');
 
       return;
-    }
+    } */
 
     this.toggleSpinner();
-    this.accountService.create(this.email, this.password, 'Anders', 'Jakobsen').subscribe(result => {
+    this.accountService.create(this.email, this.password, this.username).subscribe(result => {
       this.toggleSpinner();
 
-      this.snackbar.open('Signed up ${email}.');
+      this.signUpCompleted = true;
     }, error => {
       this.toggleSpinner();
 
-      console.log(error);
+      this.snackbar.open(error.error.message);
     });
   }
 
