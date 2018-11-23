@@ -1,0 +1,22 @@
+.full-width {
+  width: 100%;
+}
+
+.header-title-subtitle {
+  text-align: center;
+}
+
+.header-title-subtitle h1 {
+  margin: auto;
+  padding: 0;
+}
+
+.header-title-subtitle p {
+  margin: auto;
+  font-size: 12px;
+  font-style: italic;
+}
+
+mat-toolbar {
+  z-index: -2;
+}

@@ -1,6 +1,9 @@
 import { AuthorizationService } from './../../services/authorization.service';
 
 import { Component, OnInit } from '@angular/core';
+import {ErrorStateMatcher} from '@angular/material/core';
+import {FormControl, FormGroupDirective, NgForm, Validators, ValidationErrors,
+        FormGroup, FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {Router} from '@angular/router';
 import {MatDialog, MatSpinner, MatSnackBar} from '@angular/material';
 
@@ -12,9 +15,11 @@ import {MatDialog, MatSpinner, MatSnackBar} from '@angular/material';
 
 export class LoginComponent {
 
+  signupPasswordForm: FormGroup;
+
   constructor (private router: Router,
                private authorizationService: AuthorizationService,
-               private snackbar: MatSnackBar) { }
+               private snackbar: MatSnackBar) {}
 
   email: string;
   password: string;

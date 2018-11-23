@@ -1,7 +1,5 @@
-
 <div fxLayout="row" fxLayoutAlign="center center" style="margin-top: 10px;">
   <div fxFlex="400px">
-    <!-- Login -->
       <mat-card class="mat-elevation-z8">
         <mat-card-title>
           Login
@@ -27,20 +25,9 @@
           </form>
           <mat-spinner style="margin: 0 auto;" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
         </mat-card-content>
-
-        <div layout="row" layout-align="center">
-            <mat-card-actions>
-              <button mat-raised-button color="primary" (click)="login()">Login</button>
-            </mat-card-actions>
-            <mat-card-actions>
-              <button mat-raised-button color="info" (click)="login()">Sign up</button>
-            </mat-card-actions>
-        </div>
-        
-
-        
-      
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="login()">Login</button>
+        </mat-card-actions>
       </mat-card>
-
   </div>
 </div>
