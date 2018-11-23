@@ -1,3 +1,4 @@
+import { AccountService } from './../services/account.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthorizationService } from '../services';
@@ -17,22 +18,29 @@ export class SignupComponent implements OnInit {
   password: string;
   passwordConfirm: string;
 
-  constructor(private authorizationService: AuthorizationService,
+  constructor(private accountService: AccountService,
               private snackbar: MatSnackBar) { }
 
   ngOnInit() {
   }
 
-  signup(): void {
-    this.toggleSpinner();
+  signUp(): void {
     if (this.isEmailInvalid && this.isPasswordInvalid && this.isPasswordConfirmInvalid) {
       this.snackbar.open('Please correct your signup information.');
+
       return;
     }
 
-    // Sign the dude up
-    this.snackbar.open('Signed up ${email}.');
     this.toggleSpinner();
+    this.accountService.create(this.email, this.password, 'Anders', 'Jakobsen').subscribe(result => {
+      this.toggleSpinner();
+
+      this.snackbar.open('Signed up ${email}.');
+    }, error => {
+      this.toggleSpinner();
+
+      console.log(error);
+    });
   }
 
   isEmailInvalid(): boolean {
@@ -54,5 +62,4 @@ export class SignupComponent implements OnInit {
   toggleSpinner(): void {
     this.showSpinner = !this.showSpinner;
   }
-
 }
