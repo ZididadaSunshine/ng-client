@@ -44,6 +44,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { JwtInterceptor } from './interceptors';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NavComponent } from './nav/nav.component';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('da');
@@ -58,6 +59,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     AboutComponent,
     BrandComponent,
     LoginComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,
