@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { BrandComponent } from './pages/brand/brand.component';
-import { AuthComponent } from './auth/auth.component';
+import { RegisterComponent } from './pages/register/register.component';
 // import {} from './pages';
 
 const appRoutes: Routes = [
@@ -13,7 +13,8 @@ const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'about', component: AboutComponent },
     { path: 'brand', component: BrandComponent },
-    { path: 'login', component: AuthComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
     { path: '**', redirectTo: '' }
 ];
 

@@ -1,33 +1,27 @@
-<div fxLayout="row" fxLayoutAlign="center center" style="margin-top: 10px;">
-  <div fxFlex="400px">
-      <mat-card class="mat-elevation-z8">
-        <mat-card-title>
-          Login
-        </mat-card-title>
-        <mat-card-subtitle>
-          Enter your credentials to log in.
-        </mat-card-subtitle>
-        <mat-card-content>
-          <form class="example-form">
-            <table class="full-width" cellspacing="10px">
-              <tr>
-                <td>
-                  <mat-form-field class="full-width">
-                    <input matInput placeholder="E-mail" [(ngModel)]="email" name="email" required>
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td><mat-form-field class="full-width">
-                  <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
-                </mat-form-field></td>
-              </tr></table>
-          </form>
-          <mat-spinner style="margin: 0 auto;" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="login()">Login</button>
-        </mat-card-actions>
-      </mat-card>
-  </div>
+<div class="wrapper">
+  <mat-card class="mat-elevation-z8 login-card">
+    <mat-card-title>
+      {{ "Login" | translate | capitalize }}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{ "login subtitle" | translate | capitalize }}
+    </mat-card-subtitle>
+    <mat-card-content>
+      <form class="login-form">
+        <mat-form-field>
+          <input matInput placeholder="{{ 'email' | translate | capitalize }}" [formControl]="email" required>
+          <mat-error *ngIf="email.invalid">{{ "invalid email" | translate | capitalize }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="{{ 'password' | translate | capitalize }}" [formControl]="password" [type]="hide ? 'password' : 'text'"
+            required>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="login()">{{ "Login" | translate | capitalize }}</button>
+      </form>
+      <mat-spinner style="margin: 0 auto;" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+    </mat-card-content>
+  </mat-card>
 </div>

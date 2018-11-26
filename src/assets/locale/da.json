@@ -6,5 +6,8 @@
     "content": "indhold",
     "here": "her",
     "about": "om",
-    "home" : "hjem"
+    "home" : "hjem",
+    "login": "log ind",
+    "login subtitle": "indtast dine legitimationsoplysninger for at logge ind",
+    "password": "adgangskode"
 }

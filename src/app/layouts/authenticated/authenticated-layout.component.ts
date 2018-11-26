@@ -5,7 +5,8 @@ import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-authenticated-layout',
-  templateUrl: './authenticated.layout.html'
+  templateUrl: './authenticated-layout.component.html',
+  styleUrls: ['./authenticated-layout.component.css']
 })
 export class AuthenticatedLayoutComponent {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)

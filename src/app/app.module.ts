@@ -34,7 +34,7 @@ import {
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
@@ -44,9 +44,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { JwtInterceptor } from './interceptors';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { NavComponent } from './nav/nav.component';
 import { SignupComponent } from './signup/signup.component';
-import { AuthComponent } from './auth/auth.component';
+import { AuthenticatedLayoutComponent } from './layouts/authenticated/authenticated-layout.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('da');
@@ -61,9 +61,9 @@ export function setupTranslateFactory(service: TranslateService): Function {
     AboutComponent,
     BrandComponent,
     LoginComponent,
-    NavComponent,
     SignupComponent,
-    AuthComponent,
+    AuthenticatedLayoutComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +71,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     HttpClientModule,
     LayoutModule,
     FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,

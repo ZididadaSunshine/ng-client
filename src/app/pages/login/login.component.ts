@@ -21,8 +21,8 @@ export class LoginComponent {
                private authorizationService: AuthorizationService,
                private snackbar: MatSnackBar) {}
 
-  email: string;
-  password: string;
+  email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('', [Validators.required]);
 
   showSpinner = false;
 
@@ -33,12 +33,11 @@ export class LoginComponent {
   login(): void {
     this.toggleSpinner();
 
-    this.authorizationService.login(this.email, this.password).subscribe(success => {
-      this.toggleSpinner();
-
-      if (!success) {
-        this.snackbar.open('Invalid credentials 🤯');
-      }
-    });
+    this.authorizationService.login(this.email.value, this.password.value)
+      .subscribe(
+        () => console.log('Succeded'),
+        () => this.snackbar.open('Invalid credentials 🤯'),
+        () => console.log('Completed')
+      );
   }
 }
