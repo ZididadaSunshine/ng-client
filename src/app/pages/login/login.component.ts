@@ -33,12 +33,14 @@ export class LoginComponent {
   login(): void {
     this.toggleSpinner();
 
-    this.authorizationService.login(this.email, this.password).subscribe(success => {
+    this.authorizationService.login(this.email, this.password).subscribe(result => {
       this.toggleSpinner();
 
-      if (!success) {
-        this.snackbar.open('Invalid credentials 🤯');
-      }
+      console.log('login ok');
+    }, error => {
+      this.toggleSpinner();
+
+      this.snackbar.open(error.error.message);
     });
   }
 }

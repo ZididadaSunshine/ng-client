@@ -38,20 +38,19 @@ export class AuthorizationService {
     localStorage.setItem('token', result.token);
     localStorage.setItem('expires', JSON.stringify(result.expires));
 
-    console.log(localStorage.getItem('expires'));
+    this.loggedIn.next(this.getIsLoggedIn());
   }
 
   get isLoggedIn() {
     return this.loggedIn.asObservable();
   }
 
-  getIsLoggedIn(): Boolean {
+  getIsLoggedIn(): boolean {
     const expiration = localStorage.getItem('expires');
     if (!expiration) {
       return false;
     } else {
-      return new Date().getTime() < parseInt(expiration);
+      return new Date().getTime() < Number(expiration);
     }
-    return true;
   }
 }
