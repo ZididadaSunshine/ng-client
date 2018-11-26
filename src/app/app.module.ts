@@ -47,6 +47,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SignupComponent } from './signup/signup.component';
 import { AuthenticatedLayoutComponent } from './layouts/authenticated/authenticated-layout.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('da');
@@ -63,7 +64,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
     LoginComponent,
     SignupComponent,
     AuthenticatedLayoutComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,

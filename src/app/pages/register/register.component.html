@@ -1,3 +1,51 @@
-<p>
-  register works!
-</p>
+<div class="wrapper">
+  <mat-card class="mat-elevation-z8 register-card">
+    <mat-card-title>
+      {{ "Register" | translate | capitalize }}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{ "register subtitle" | translate | capitalize }}
+    </mat-card-subtitle>
+    <mat-card-content>
+      <div *ngIf="showSpinner; else elseBlock">
+        <mat-spinner style="margin: 0 auto;"></mat-spinner>
+      </div>
+      <ng-template #elseBlock>
+        <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <mat-form-field>
+            <input matInput placeholder="{{ 'firstname' | translate | capitalize }}" formControlName="firstName"
+              required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="{{ 'lastname' | translate | capitalize }}" formControlName="lastName" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="{{ 'email' | translate | capitalize }}" formControlName="email" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="{{ 'password' | translate | capitalize }}" formControlName="password" type="password"
+              required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="{{ 'confirm password' | translate | capitalize }}" formControlName="confirmPassword"
+              type="password" required>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">{{ "register" |
+            translate
+            | capitalize }}</button>
+        </form>
+      </ng-template>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <p>
+        <a routerLink="/login" routerLinkActive="active">{{ "Already have a user?" | translate | capitalize }}</a>
+      </p>
+    </mat-card-actions>
+  </mat-card>
+</div>

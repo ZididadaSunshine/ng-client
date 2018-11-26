@@ -14,13 +14,11 @@
         <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <mat-form-field>
             <input matInput placeholder="{{ 'email' | translate | capitalize }}" formControlName="email" required>
-            <!-- <mat-error *ngIf="email.invalid">{{ "invalid email" | translate | capitalize }}</mat-error> -->
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="{{ 'password' | translate | capitalize }}" formControlName="password" [type]="hide ? 'password' : 'text'"
+            <input matInput placeholder="{{ 'password' | translate | capitalize }}" formControlName="password" type="password"
               required>
-            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>
 
           <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">{{ "Login" | translate
@@ -28,5 +26,10 @@
         </form>
       </ng-template>
     </mat-card-content>
+
+    <mat-card-actions>
+      <p><a routerLink="/forgot-password" routerLinkActive="active">{{ "Forgot password?" | translate | capitalize }}</a></p>
+      <p><a routerLink="/register" routerLinkActive="active">{{ "Register?" | translate | capitalize }}</a></p>
+    </mat-card-actions>
   </mat-card>
 </div>

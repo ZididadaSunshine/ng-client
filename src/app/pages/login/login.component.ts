@@ -17,8 +17,6 @@ import { MatDialog, MatSpinner, MatSnackBar } from '@angular/material';
 
 export class LoginComponent {
 
-  signupPasswordForm: FormGroup;
-
   constructor(private router: Router,
     private authorizationService: AuthorizationService,
     private snackbar: MatSnackBar) { }
@@ -45,7 +43,7 @@ export class LoginComponent {
           setTimeout(() => {
             this.toggleSpinner();
             this.loginForm.setErrors({
-              Invalid: true
+              'incorrect': true
             });
             this.snackbar.open('Invalid credentials 🤯');
           }, 1000)

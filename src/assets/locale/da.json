@@ -9,5 +9,6 @@
     "home" : "hjem",
     "login": "log ind",
     "login subtitle": "indtast dine legitimationsoplysninger for at logge ind",
-    "password": "adgangskode"
+    "password": "adgangskode",
+    "back": "tilbage"
 }

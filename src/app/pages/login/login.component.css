@@ -13,3 +13,12 @@
 .mat-form-field {
     width: 100%;
 }
+
+.mat-card-actions {
+    margin: 0;
+    font-size: 12px;
+}
+
+.mat-card-actions a {
+    text-decoration: none;
+}
