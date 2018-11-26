@@ -39,5 +39,6 @@ export class LoginComponent {
         () => this.snackbar.open('Invalid credentials 🤯'),
         () => console.log('Completed')
       );
+
   }
 }
