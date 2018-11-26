@@ -22,25 +22,31 @@ export class LoginComponent {
   constructor(private router: Router,
     private authorizationService: AuthorizationService,
     private snackbar: MatSnackBar) { }
-
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required]);
-
+  
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required])
+  });
+  
+  hide = true;
   showSpinner = false;
 
   toggleSpinner() {
     this.showSpinner = !this.showSpinner;
   }
 
-  login(): void {
+  onSubmit() {
     this.toggleSpinner();
-
-    this.authorizationService.login(this.email.value, this.password.value)
+    const formData = this.loginForm.value
+    this.authorizationService.login(formData['email'], formData['password'])
       .subscribe(
         () => console.log('Succeded'),
         () => {
           setTimeout(() => {
             this.toggleSpinner();
+            this.loginForm.setErrors({
+              Invalid: true
+            });
             this.snackbar.open('Invalid credentials 🤯');
           }, 1000)
         },
