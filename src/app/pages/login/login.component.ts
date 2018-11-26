@@ -1,11 +1,13 @@
 import { AuthorizationService } from './../../services/authorization.service';
 
 import { Component, OnInit } from '@angular/core';
-import {ErrorStateMatcher} from '@angular/material/core';
-import {FormControl, FormGroupDirective, NgForm, Validators, ValidationErrors,
-        FormGroup, FormBuilder, ReactiveFormsModule} from '@angular/forms';
-import {Router} from '@angular/router';
-import {MatDialog, MatSpinner, MatSnackBar} from '@angular/material';
+import { ErrorStateMatcher } from '@angular/material/core';
+import {
+  FormControl, FormGroupDirective, NgForm, Validators, ValidationErrors,
+  FormGroup, FormBuilder, ReactiveFormsModule
+} from '@angular/forms';
+import { Router } from '@angular/router';
+import { MatDialog, MatSpinner, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -17,9 +19,9 @@ export class LoginComponent {
 
   signupPasswordForm: FormGroup;
 
-  constructor (private router: Router,
-               private authorizationService: AuthorizationService,
-               private snackbar: MatSnackBar) {}
+  constructor(private router: Router,
+    private authorizationService: AuthorizationService,
+    private snackbar: MatSnackBar) { }
 
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required]);
@@ -36,9 +38,12 @@ export class LoginComponent {
     this.authorizationService.login(this.email.value, this.password.value)
       .subscribe(
         () => console.log('Succeded'),
-        () => this.snackbar.open('Invalid credentials 🤯'),
-        () => console.log('Completed')
+        () => {
+          setTimeout(() => {
+            this.toggleSpinner();
+            this.snackbar.open('Invalid credentials 🤯');
+          }, 1000)
+        },
       );
-
   }
 }
