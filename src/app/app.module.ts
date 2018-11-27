@@ -14,6 +14,15 @@ import {
   TranslateService,
 } from './services';
 
+import { 
+  LoginComponent,
+  HomeComponent, 
+  AboutComponent,
+  BrandComponent,
+  RegisterComponent, 
+  ForgotPasswordComponent 
+} from './pages';
+
 // Material imports
 import {
   MatButtonModule,
@@ -29,25 +38,15 @@ import {
   MatExpansionModule, MatTableModule, MatPaginatorModule, MatSortModule,
   MatProgressSpinnerModule,
   MatSnackBarModule,
-  MAT_SNACK_BAR_DEFAULT_OPTIONS
+  MAT_SNACK_BAR_DEFAULT_OPTIONS 
 } from '@angular/material';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HomeComponent } from './pages/home/home.component';
-import { AboutComponent } from './pages/about/about.component';
-import { BrandComponent } from './pages/brand/brand.component';
-import { LoginComponent } from './pages/login/login.component';
 import { JwtInterceptor } from './interceptors';
-
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SignupComponent } from './signup/signup.component';
 import { AuthenticatedLayoutComponent } from './layouts/authenticated/authenticated-layout.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('da');
@@ -62,7 +61,6 @@ export function setupTranslateFactory(service: TranslateService): Function {
     AboutComponent,
     BrandComponent,
     LoginComponent,
-    SignupComponent,
     AuthenticatedLayoutComponent,
     RegisterComponent,
     ForgotPasswordComponent,
