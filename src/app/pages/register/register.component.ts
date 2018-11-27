@@ -13,11 +13,10 @@ export class RegisterComponent implements OnInit {
   spinner = false;
   registerForm: FormGroup;
 
-  get firstname() { return this.registerForm.get('firstname') }
-  get lastname() { return this.registerForm.get('lastname') }
-  get email() { return this.registerForm.get('email') }
-  get password() { return this.registerForm.get('password') }
-  get cpassword() { return this.registerForm.get('cpassword') }
+  get username() { return this.registerForm.get('username'); }
+  get email() { return this.registerForm.get('email'); }
+  get password() { return this.registerForm.get('password'); }
+  get cpassword() { return this.registerForm.get('cpassword'); }
 
   constructor(
     private accountService: AccountService,
@@ -25,8 +24,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = new FormGroup({
-      firstname: new FormControl('', [Validators.required]),
-      lastname: new FormControl('', [Validators.required]),
+      username: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
       cpassword: new FormControl('', [Validators.required]),
@@ -61,8 +59,10 @@ export class RegisterComponent implements OnInit {
     const cpassword = group.get('cpassword');
     const error = { matchPassword: true };
 
-    if (password.value != cpassword.value) cpassword.setErrors(error);
+    if (password.value !== cpassword.value) {
+      cpassword.setErrors(error);
+    }
 
-    return password && cpassword && password.value != cpassword.value ? error : null;
+    return password && cpassword && password.value !== cpassword.value ? error : null;
   }
 }

@@ -13,14 +13,9 @@
       <mat-card-content>
         <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
           <mat-form-field>
-            <input matInput placeholder="{{ 'firstname' | translate | capitalize }}" formControlName="firstname"
+            <input matInput placeholder="{{ 'username' | translate | capitalize }}" formControlName="username"
               required>
-            <mat-error *ngIf="firstname.invalid">{{firstname.errors | keys | get | append:"error" | translate | capitalize }}</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <input matInput placeholder="{{ 'lastname' | translate | capitalize }}" formControlName="lastname" required>
-            <mat-error *ngIf="lastname.invalid">{{lastname.errors | keys | get | append:"error" | translate | capitalize }}</mat-error>
+            <mat-error *ngIf="username.invalid">{{username.errors | keys | get | append:"error" | translate | capitalize }}</mat-error>
           </mat-form-field>
 
           <mat-form-field>

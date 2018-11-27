@@ -14,13 +14,13 @@ import {
   TranslateService,
 } from './services';
 
-import { 
+import {
   LoginComponent,
-  HomeComponent, 
+  HomeComponent,
   AboutComponent,
   BrandComponent,
-  RegisterComponent, 
-  ForgotPasswordComponent 
+  RegisterComponent,
+  ForgotPasswordComponent
 } from './pages';
 
 // Material imports
@@ -38,7 +38,7 @@ import {
   MatExpansionModule, MatTableModule, MatPaginatorModule, MatSortModule,
   MatProgressSpinnerModule,
   MatSnackBarModule,
-  MAT_SNACK_BAR_DEFAULT_OPTIONS 
+  MAT_SNACK_BAR_DEFAULT_OPTIONS
 } from '@angular/material';
 
 import {

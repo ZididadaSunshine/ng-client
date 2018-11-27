@@ -10,16 +10,12 @@ import { AuthorizationService } from './services';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  
   isLoggedIn: boolean;
 
-  constructor(private authorizationService: AuthorizationService) { 
+  constructor(private authorizationService: AuthorizationService) {
   }
-  
+
   ngOnInit(): void {
-    this.authorizationService.isLoggedIn.subscribe(res => this.isLoggedIn = res)
+    this.authorizationService.isLoggedIn.subscribe(res => this.isLoggedIn = res);
   }
-
-  
-
 }
