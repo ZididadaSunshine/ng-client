@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import { AccountService } from '../../services/'
+import { AccountService } from '../../services/';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
-    private snackbar: MatSnackBar) { }
+    private snackbar: MatSnackBar,
+    private router: Router) { }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -40,7 +42,7 @@ export class RegisterComponent implements OnInit {
     const formData = this.registerForm.value;
     this.accountService.create(formData['email'], formData['password'], formData['username'])
       .subscribe(
-        () => console.log('Succeded'),
+        () => this.router.navigate(['/login']),
         () => {
           setTimeout(() => {
             this.toggleSpinner();
