@@ -44,7 +44,7 @@ import {
 import {
   AuthenticatedLayoutComponent,
   UnauthenticatedLayoutComponent
-} from './layouts'
+} from './layouts';
 
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
