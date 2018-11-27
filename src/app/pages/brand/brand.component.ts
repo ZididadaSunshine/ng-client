@@ -8,37 +8,109 @@ import { Breakpoints, BreakpointState, BreakpointObserver } from '@angular/cdk/l
   styleUrls: ['./brand.component.css']
 })
 export class BrandComponent implements OnInit {
+  // Number of columns per row
+  cols: number = 2;
 
-  /** Based on the screen size, switch from standard to one column per row */
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
-      if (matches) {
-        return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-        ];
+  data =
+    [
+      {
+        synonym: "apple",
+        mentions:
+          [
+            {
+              date: "2017-01-07 18:00:00",
+              num_mentions: 1
+            },
+            {
+              date: "2017-02-07 18:00:00",
+              num_mentions: 2
+            },
+            {
+              date: "2017-03-07 18:00:00",
+              num_mentions: 3
+            },
+            {
+              date: "2017-04-07 18:00:00",
+              num_mentions: 4
+            },
+            {
+              date: "2017-05-07 18:00:00",
+              num_mentions: 5
+            },
+            {
+              date: "2017-06-07 18:00:00",
+              num_mentions: 6
+            },
+            {
+              date: "2017-07-07 18:00:00",
+              num_mentions: 7
+            },
+            {
+              date: "2017-08-07 18:00:00",
+              num_mentions: 8
+            },
+            {
+              date: "2017-09-07 18:00:00",
+              num_mentions: 9
+            }
+          ]
+      },
+      {
+        synonym: "samsung",
+        mentions:
+          [
+            {
+              date: "2017-01-07 18:00:00",
+              num_mentions: 22
+            },
+            {
+              date: "2017-02-07 18:00:00",
+              num_mentions: 33
+            },
+            {
+              date: "2017-03-07 18:00:00",
+              num_mentions: 25
+            },
+            {
+              date: "2017-04-07 18:00:00",
+              num_mentions: 24
+            },
+            {
+              date: "2017-05-07 18:00:00",
+              num_mentions: 23
+            },
+            {
+              date: "2017-06-07 18:00:00",
+              num_mentions: 32
+            },
+            {
+              date: "2017-07-07 18:00:00",
+              num_mentions: 33
+            },
+            {
+              date: "2017-08-07 18:00:00",
+              num_mentions: 35
+            },
+            {
+              date: "2017-09-07 18:00:00",
+              num_mentions: 42
+            }
+          ]
       }
-
-      return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 1 }
-      ];
-    })
-  );
+    ]
 
   // lineChart
-  lineChartData: Array<any> = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-    { data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C' }
-  ];
+  lineChartData: Array<any> = this.makeDatasets(this.data);
 
   lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   lineChartOptions: any = {
     responsive: true,
-    maintainAspectRatio: false
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        type: 'time'
+      }]
+    }
   };
 
   lineChartColors: Array<any> = [
@@ -57,14 +129,6 @@ export class BrandComponent implements OnInit {
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
   ];
 
@@ -72,25 +136,12 @@ export class BrandComponent implements OnInit {
   lineChartType: string = 'line';
 
   ngOnInit(): void {
+    // Set the number of cols based on breakpoint
+    this.breakpointObserver.observe(Breakpoints.Handset)
+      .subscribe((({ matches }) => this.cols = matches === true ? 1 : 2));
   }
-
-  /* @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    event.target.innerWidth;
-  } */
 
   constructor(private breakpointObserver: BreakpointObserver) { }
-
-  randomize(): void {
-    let _lineChartData: Array<any> = new Array(this.lineChartData.length);
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      _lineChartData[i] = { data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label };
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
-      }
-    }
-    this.lineChartData = _lineChartData;
-  }
 
   // events
   chartClicked(e: any): void {
@@ -99,5 +150,48 @@ export class BrandComponent implements OnInit {
 
   chartHovered(e: any): void {
     console.log(e);
+  }
+
+
+  getRandomColor() {
+    let r = function () { return Math.floor(Math.random() * 256) };
+    return "rgb(" + r() + "," + r() + "," + r() + ")";
+  }
+
+  makeDatasets(mentionsList) {
+    // Mentions have the following shape:
+    // mentions =
+    // {
+    //     synonym: "apple",
+    //     mentions :
+    //     [
+    //         {
+    //             date: 'DD-MM-YYY',
+    //             num_mentions: 123
+    //         }
+    //     ]
+    // };
+    let datasets = [];
+    mentionsList.forEach((element) => {
+      let synonym = element.synonym;
+      let data = [];
+      // Format all mention entries into x/y coordinates.
+      element.mentions.forEach((mentionsEntry) => {
+        data.push(
+          {
+            x: mentionsEntry.date,
+            y: mentionsEntry.num_mentions
+          })
+      });
+      // Convert mentions into a graphable object
+      datasets.push(
+        {
+          label: synonym,
+          borderColor: this.getRandomColor(),
+          data: data
+        });
+    });
+
+    return datasets;
   }
 }
