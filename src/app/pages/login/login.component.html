@@ -1,35 +1,45 @@
 <div class="wrapper">
-  <mat-card class="mat-elevation-z8 login-card">
-    <mat-card-title>
-      {{ "Login" | translate | capitalize }}
-    </mat-card-title>
-    <mat-card-subtitle>
-      {{ "login subtitle" | translate | capitalize }}
-    </mat-card-subtitle>
-    <mat-card-content>
-      <div *ngIf="showSpinner; else elseBlock">
-        <mat-spinner style="margin: 0 auto;"></mat-spinner>
-      </div>
-      <ng-template #elseBlock>
+
+  <div *ngIf="spinner; else elseBlock">
+
+    <mat-spinner style="margin: 0 auto;"></mat-spinner>
+
+  </div>
+
+  <ng-template #elseBlock>
+
+    <mat-card class="mat-elevation-z8 login-card">
+      <mat-card-title>
+        {{ "Login" | translate | capitalize }}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{ "login subtitle" | translate | capitalize }}
+      </mat-card-subtitle>
+      <mat-card-content>
         <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <mat-form-field>
             <input matInput placeholder="{{ 'email' | translate | capitalize }}" formControlName="email" required>
+            <mat-error *ngIf="email.invalid">{{email.errors | keys | get | append:"error" | translate |
+                capitalize }}</mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <input matInput placeholder="{{ 'password' | translate | capitalize }}" formControlName="password" type="password"
               required>
+            <mat-error *ngIf="password.invalid">{{password.errors | keys | get | append:"error" | translate |
+              capitalize }}</mat-error>
           </mat-form-field>
 
           <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">{{ "Login" | translate
             | capitalize }}</button>
         </form>
-      </ng-template>
-    </mat-card-content>
+      </mat-card-content>
 
-    <mat-card-actions>
-      <p><a routerLink="/forgot-password" routerLinkActive="active">{{ "Forgot password?" | translate | capitalize }}</a></p>
-      <p><a routerLink="/register" routerLinkActive="active">{{ "Register?" | translate | capitalize }}</a></p>
-    </mat-card-actions>
-  </mat-card>
+      <mat-card-actions>
+        <p><a routerLink="/forgot-password" routerLinkActive="active">{{ "Forgot password?" | translate | capitalize }}</a></p>
+        <p><a routerLink="/register" routerLinkActive="active">{{ "Register?" | translate | capitalize }}</a></p>
+      </mat-card-actions>
+    </mat-card>
+
+  </ng-template>
 </div>

@@ -15,22 +15,29 @@ import { MatDialog, MatSpinner, MatSnackBar } from '@angular/material';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+
+  loginForm: FormGroup;
+
+  get email() { return this.loginForm.get('email') }
+  get password() { return this.loginForm.get('password') }
+
+  hide = true;
+  spinner = false;
 
   constructor(private router: Router,
     private authorizationService: AuthorizationService,
     private snackbar: MatSnackBar) { }
-  
-  loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required])
-  });
-  
-  hide = true;
-  showSpinner = false;
+
+  ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
+    });
+  }
 
   toggleSpinner() {
-    this.showSpinner = !this.showSpinner;
+    this.spinner = !this.spinner;
   }
 
   onSubmit() {

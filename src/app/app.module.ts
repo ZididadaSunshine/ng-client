@@ -47,6 +47,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthenticatedLayoutComponent } from './layouts/authenticated/authenticated-layout.component';
+import { KeysPipe } from './pipes/keys/keys.pipe';
+import { GetPipe } from './pipes/get/get.pipe';
+import { AppendPipe } from './pipes/append/append.pipe';
+
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('da');
@@ -64,6 +68,9 @@ export function setupTranslateFactory(service: TranslateService): Function {
     AuthenticatedLayoutComponent,
     RegisterComponent,
     ForgotPasswordComponent,
+    KeysPipe,
+    GetPipe,
+    AppendPipe,
   ],
   imports: [
     BrowserModule,

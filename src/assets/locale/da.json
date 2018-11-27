@@ -10,5 +10,16 @@
     "login": "log ind",
     "login subtitle": "indtast dine legitimationsoplysninger for at logge ind",
     "password": "adgangskode",
-    "back": "tilbage"
+    "back": "tilbage",
+    "requirederror": "dette felt er påkrævet",
+    "matchpassworderror": "bekræftelsesadgangskoden stemmer ikke overens med adgangskoden",
+    "emailerror": "email addressen er ikke gyldig",
+    "register": "registrer",
+    "register subtitle": "Indtast dine oplysninger for at registrere en bruger",
+    "firstname": "fornavn",
+    "lastname": "efternavn",
+    "confirm password": "bekræft adgangskode",
+    "already have a user?": "har du allerede en bruger?",
+    "register?": "registrer?",
+    "forgot password?": "glemt kodeord?"
 }
