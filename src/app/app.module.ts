@@ -41,12 +41,16 @@ import {
   MAT_SNACK_BAR_DEFAULT_OPTIONS 
 } from '@angular/material';
 
+import {
+  AuthenticatedLayoutComponent,
+  UnauthenticatedLayoutComponent
+} from './layouts'
+
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AuthenticatedLayoutComponent } from './layouts/authenticated/authenticated-layout.component';
 import { KeysPipe } from './pipes/keys/keys.pipe';
 import { GetPipe } from './pipes/get/get.pipe';
 import { AppendPipe } from './pipes/append/append.pipe';
@@ -71,6 +75,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     KeysPipe,
     GetPipe,
     AppendPipe,
+    UnauthenticatedLayoutComponent,
   ],
   imports: [
     BrowserModule,
