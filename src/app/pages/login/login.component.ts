@@ -42,10 +42,10 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.toggleSpinner();
-    const formData = this.loginForm.value
+    const formData = this.loginForm.value;
     this.authorizationService.login(formData['email'], formData['password'])
       .subscribe(
-        () => console.log('Succeded'),
+        () => this.router.navigate(['']),
         () => {
           setTimeout(() => {
             this.toggleSpinner();

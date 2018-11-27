@@ -1,22 +1,23 @@
-import { 
-    Routes, 
-    RouterModule } from '@angular/router';
+import {
+    Routes,
+    RouterModule} from '@angular/router';
 
-import { 
+import {
     LoginComponent,
-    HomeComponent, 
+    HomeComponent,
     AboutComponent,
     BrandComponent,
-    RegisterComponent, 
-    ForgotPasswordComponent } from './pages';
+    RegisterComponent } from './pages';
+
+import { AuthorizationGuard } from './guards';
 
 const appRoutes: Routes = [
     // { path: '', component: WelcomeComponent },
 
     /** Redirect to home if no eligable route */
-    { path: '', component: HomeComponent },
-    { path: 'about', component: AboutComponent },
-    { path: 'brand', component: BrandComponent },
+    { path: '', component: HomeComponent, canActivate: [AuthorizationGuard] },
+    { path: 'about', component: AboutComponent, canActivate: [AuthorizationGuard] },
+    { path: 'brand', component: BrandComponent, canActivate: [AuthorizationGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     /* { path: 'forgot-password', component: ForgotPasswordComponent }, */
