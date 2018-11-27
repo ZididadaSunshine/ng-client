@@ -6,42 +6,18 @@ import { Breakpoints, BreakpointState, BreakpointObserver } from '@angular/cdk/l
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-
-
-  testdata = [
-    {
-      "name": "Germany",
-      "value": 8940000
-    },
-    {
-      "name": "USA",
-      "value": 5000000
-    },
-    {
-      "name": "France",
-      "value": 7200000
-    }
-  ];
-
-
-
-  // graph options
-  showXAxis = true;
-  showYAxis = true;
-  gradient = false;
-  showLegend = false;
-  showXAxisLabel = true;
-  xAxisLabel = 'Country';
-  showYAxisLabel = true;
-  yAxisLabel = 'Population';
-
-  colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-  };
-
-  constructor(private breakpointObserver: BreakpointObserver) { }
-
-  ngOnInit(): void {
+export class HomeComponent {
+  // Doughnut
+  public doughnutChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+  public doughnutChartData:number[] = [350, 450, 100];
+  public doughnutChartType:string = 'doughnut';
+ 
+  // events
+  public chartClicked(e:any):void {
+    console.log(e);
+  }
+ 
+  public chartHovered(e:any):void {
+    console.log(e);
   }
 }

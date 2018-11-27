@@ -46,7 +46,7 @@ import {
   UnauthenticatedLayoutComponent
 } from './layouts'
 
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors';
@@ -98,10 +98,10 @@ export function setupTranslateFactory(service: TranslateService): Function {
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
-    NgxChartsModule,
     FlexLayoutModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ChartsModule
   ],
 
   exports: [MatProgressSpinnerModule],
