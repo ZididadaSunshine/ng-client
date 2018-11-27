@@ -1,11 +1,11 @@
 .sidenav-container {
-    height: 100vh;
+    height: min-height;
   }
-  
+
 .sidenav {
     min-width: 250px;
 }
-  
+
 .mat-toolbar.mat-primary {
     position: sticky;
     top: 0;
