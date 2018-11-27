@@ -35,7 +35,6 @@ export class RegisterComponent implements OnInit {
     this.cpassword.setErrors({ foo: true });
     this.cpassword.setErrors({ bar: true });
     console.log(Object.keys(this.cpassword.errors));
-
   }
 
   onSubmit() {
