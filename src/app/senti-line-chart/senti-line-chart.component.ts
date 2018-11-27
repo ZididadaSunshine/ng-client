@@ -13,6 +13,7 @@ export class SentiLineChartComponent {
   public lineChartData: Array<any> = makeDatasets(DATA);
   public lineChartOptions: any = {
     responsive: true,
+    maintainAspectRatio: false,
     scales: {
       xAxes: [{
         type: 'time'
@@ -60,18 +61,6 @@ export class SentiLineChartComponent {
     console.log(e);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 const DATA =
