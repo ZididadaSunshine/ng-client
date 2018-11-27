@@ -55,7 +55,6 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
 import { GetPipe } from './pipes/get/get.pipe';
 import { AppendPipe } from './pipes/append/append.pipe';
 
-
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('da');
 }
