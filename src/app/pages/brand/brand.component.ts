@@ -9,7 +9,7 @@ import { Breakpoints, BreakpointState, BreakpointObserver } from '@angular/cdk/l
 })
 export class BrandComponent implements OnInit {
   // Number of columns per row
-  cols: number = 2;
+  cols: number;
 
   data =
     [
