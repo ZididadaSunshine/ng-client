@@ -1,0 +1,28 @@
+table {
+    width: 100%;
+  }
+  
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+    max-width: 256px;
+}
+  
+td, th {
+    width: 25%;
+}
+
+.container {
+    margin: 20px;
+}
+
+.filters-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 62px;
+    padding: 0 8px;
+    flex-wrap: wrap-reverse;
+    background-color: white;
+    margin-bottom: 20px;
+}
