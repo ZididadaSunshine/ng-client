@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://172.28.198.101:8000/api'
+  apiUrl: 'http://172.28.198.101:8000/api' // 'http://localhost:5000/api'
 };
 
 localStorage.setItem('expires', '99999999999999')
