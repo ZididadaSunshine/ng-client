@@ -45,15 +45,20 @@ export class LoginComponent implements OnInit {
     const formData = this.loginForm.value;
     this.authorizationService.login(formData['email'], formData['password'])
       .subscribe(
-        () => this.router.navigate(['']),
-        () => {
+        response => this.router.navigate(['']),
+        error => {
           setTimeout(() => {
             this.toggleSpinner();
-            this.loginForm.setErrors({
-              'incorrect': true
-            });
-            this.snackbar.open('Invalid credentials 🤯');
-          }, 1000)
+            if (error.error && error.error.message) {
+              this.loginForm.setErrors({
+                'incorrect': true
+              });
+
+              this.snackbar.open(`${error.error.message} 🤯`);
+            } else {
+              this.snackbar.open(`An unknown error occurred`);
+            }
+          }, 1000);
         },
       );
   }
