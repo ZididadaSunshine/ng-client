@@ -7,7 +7,7 @@ export const environment = {
   apiUrl: 'http://172.28.198.101:8000/api' // 'http://localhost:5000/api'
 };
 
-localStorage.setItem('expires', '99999999999999')
+// localStorage.setItem('expires', '99999999999999');
 
 /*
  * In development mode, to ignore zone related error stack frames such as

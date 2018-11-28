@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar } from '@angular/material';
+import { BrandService } from 'src/app/services';
 
 @Component({
   selector: 'app-brands',
@@ -7,29 +8,28 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
   styleUrls: ['./brands.component.css']
 })
 export class BrandsComponent implements OnInit {
-
-  brand_data = [
-    {title: 'Apple', score: Math.random()},
-    {title: 'Nike', score: Math.random()},
-    {title: 'Facebook', score: Math.random()},
-    {title: 'Twitter', score: Math.random()},
-    {title: 'Reddit', score: Math.random()}
-  ];
-
-  displayedColumns: string[] = ['title', 'score'];
+  displayedColumns: string[] = ['name', 'score'];
   dataSource;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() { }
+  constructor(private brandService: BrandService,
+              private snackbar: MatSnackBar) { }
 
   ngOnInit() {
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(this.brand_data)
+    this.loadBrands();
+  }
 
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  loadBrands() {
+    this.brandService.getAll().subscribe(response => {
+      this.dataSource = new MatTableDataSource(response);
+
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }, error => {
+      this.snackbar.open(`Could not load brands (${error.status}).`);
+    });
   }
 
   applyFilter(filterValue: string) {
@@ -39,5 +39,4 @@ export class BrandsComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
 }
