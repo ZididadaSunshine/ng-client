@@ -1,12 +1,17 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
-        <mat-toolbar color="primary">
-            <div *ngIf="(isHandset$ | async)">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) || (isPortrait$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) || (isPortrait$ | async) ? 'over' : 'side'" [opened]="!((isHandset$ | async) || (isPortrait$ | async))">
+        <mat-toolbar color="primary" class="mat-elevation-z6">
+            <div *ngIf="(isHandset$ | async) || (isPortrait$ | async)">
                 <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
                     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
                 </button>
             </div>
+
+            <a mat-icon-button routerLink="">
+                <mat-icon svgIcon="logo"></mat-icon>
+            </a>
+
         </mat-toolbar>
         <mat-nav-list>
             <a mat-list-item routerLink="" routerLinkActive="active">Home</a>
@@ -15,16 +20,18 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content color="primary">
-        <mat-toolbar color="primary">
-            <div *ngIf="(isHandset$ | async)">
-                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
-                    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-                </button>
-            </div>
-            <span>
-                <mat-icon svgIcon="logo"></mat-icon> SentiCloud
-            </span>
+        <mat-toolbar color="primary" class="mat-elevation-z6" *ngIf="(isHandset$ | async) || (isPortrait$ | async)">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+
+            <a mat-icon-button routerLink="">
+                <mat-icon svgIcon="logo"></mat-icon>
+            </a>
+
+
             <span class="spacer"></span>
+
         </mat-toolbar>
 
         <router-outlet></router-outlet>

@@ -1,16 +1,16 @@
 <div class="wrapper">
 
-  <div *ngIf="spinner; else elseBlock">
+  <div *ngIf="spinner; else formBlock">
 
     <mat-spinner style="margin: 0 auto;"></mat-spinner>
 
   </div>
 
-  <ng-template #elseBlock>
+  <ng-template #formBlock>
 
     <mat-card class="mat-elevation-z8 login-card">
       <mat-card-title>
-        {{ "Login" | translate | capitalize }}
+        {{ "login" | translate | capitalize }}
       </mat-card-title>
       <mat-card-subtitle>
         {{ "login subtitle" | translate | capitalize }}
@@ -20,7 +20,7 @@
           <mat-form-field>
             <input matInput placeholder="{{ 'email' | translate | capitalize }}" formControlName="email" required>
             <mat-error *ngIf="email.invalid">{{email.errors | keys | get | append:"error" | translate |
-                capitalize }}</mat-error>
+              capitalize }}</mat-error>
           </mat-form-field>
 
           <mat-form-field>
@@ -36,8 +36,8 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <p><a routerLink="/forgot-password" routerLinkActive="active">{{ "Forgot password?" | translate | capitalize }}</a></p>
-        <p><a routerLink="/register" routerLinkActive="active">{{ "Register?" | translate | capitalize }}</a></p>
+        <p><a routerLink="/forgot-password" routerLinkActive="active">{{ "forgot password?" | translate | capitalize }}</a></p>
+        <p><a routerLink="/register" routerLinkActive="active">{{ "register?" | translate | capitalize }}</a></p>
       </mat-card-actions>
     </mat-card>
 

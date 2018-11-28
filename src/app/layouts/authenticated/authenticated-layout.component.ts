@@ -17,6 +17,13 @@ export class AuthenticatedLayoutComponent implements OnInit {
       map(result => result.matches)
     );
 
+  isPortrait$: Observable<boolean> = this.breakpointObserver.observe(('(orientation: portrait)'))
+    .pipe(
+      map(result => result.matches)
+    );
+
+  isLandscape$: Observable<boolean> = this.isPortrait$.pipe(map(result => !result));
+
   constructor(
     private breakpointObserver: BreakpointObserver,
     private matIconRegistry: MatIconRegistry,
