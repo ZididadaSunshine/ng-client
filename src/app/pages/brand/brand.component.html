@@ -1,3 +1,4 @@
+<script src="mock_data.js"></script>
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
   <mat-grid-list [cols]="cols" rowHeight="400px">
@@ -9,10 +10,11 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <canvas baseChart height="300" [datasets]="lineChartData" [options]="lineChartOptions" [colors]="lineChartColors"
+          <canvas baseChart height="300" [datasets]="lineChartData" [options]="lineChartOptions"
             [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
+
