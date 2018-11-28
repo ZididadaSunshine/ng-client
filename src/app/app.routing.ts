@@ -10,6 +10,7 @@ import {
     RegisterComponent } from './pages';
 
 import { AuthorizationGuard } from './guards';
+import { BrandsComponent } from './pages/brands/brands.component';
 
 const appRoutes: Routes = [
     // { path: '', component: WelcomeComponent },
@@ -20,7 +21,7 @@ const appRoutes: Routes = [
     { path: 'brand', component: BrandComponent, canActivate: [AuthorizationGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    /* { path: 'forgot-password', component: ForgotPasswordComponent }, */
+    { path: 'brands', component: BrandsComponent },
     { path: '**', redirectTo: '' }
 ];
 
