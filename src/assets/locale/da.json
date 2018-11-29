@@ -21,5 +21,6 @@
     "confirm password": "bekræft adgangskode",
     "already have a user?": "har du allerede en bruger?",
     "register?": "registrer?",
-    "forgot password?": "glemt kodeord?"
+    "forgot password?": "glemt kodeord?",
+    "brand %s created": "brand '%s' tilføjet"
 }

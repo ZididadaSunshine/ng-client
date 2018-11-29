@@ -38,6 +38,7 @@ import {
   MatExpansionModule, MatTableModule, MatPaginatorModule, MatSortModule,
   MatProgressSpinnerModule,
   MatSnackBarModule,
+  MatDialogModule,
   MAT_SNACK_BAR_DEFAULT_OPTIONS
 } from '@angular/material';
 
@@ -55,9 +56,11 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
 import { GetPipe } from './pipes/get/get.pipe';
 import { AppendPipe } from './pipes/append/append.pipe';
 import { BrandsComponent } from './pages/brands/brands.component';
+import { BrandDialogComponent } from './dialogs/brand-dialog/brand-dialog.component';
+import { HttpErrorPipe } from './pipes/http-error/http-error.pipe';
 
 export function setupTranslateFactory(service: TranslateService): Function {
-  return () => service.use('da');
+  return () => service.use('en');
 }
 
 @NgModule({
@@ -77,6 +80,11 @@ export function setupTranslateFactory(service: TranslateService): Function {
     AppendPipe,
     UnauthenticatedLayoutComponent,
     BrandsComponent,
+    BrandDialogComponent,
+    HttpErrorPipe,
+  ],
+  entryComponents: [
+    BrandDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -103,6 +111,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     FlexLayoutModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatDialogModule,
     ChartsModule
   ],
 
@@ -126,6 +135,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     },
     TranslatePipe,
     CapitalizePipe,
+    HttpErrorPipe
   ],
   bootstrap: [AppComponent]
 })

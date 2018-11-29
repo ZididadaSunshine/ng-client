@@ -1,3 +1,9 @@
 {
-    
+    "login subtitle": "enter your credentials to log in",
+    "requirederror": "this field is required",
+    "matchpassworderror": "the confirmation password does not match the password",
+    "emailerror": "the email address is invalid",
+    "register subtitle": "enter your information to register a user",
+    "firstname": "first name",
+    "lastname": "last name"
 }

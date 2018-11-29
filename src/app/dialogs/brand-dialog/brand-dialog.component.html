@@ -1,0 +1,12 @@
+<form class="brand-form" [formGroup]="brandForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input matInput placeholder="{{ 'name' | translate | capitalize }}" formControlName="name" required>
+      <mat-error *ngIf="name.invalid">{{name.errors | keys | get | append:"error" | translate | capitalize }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onClose()">Close</button>
+    <button mat-button type="submit" [disabled]="!brandForm.valid" cdkFocusInitial>Create</button>
+  </div>
+</form>
