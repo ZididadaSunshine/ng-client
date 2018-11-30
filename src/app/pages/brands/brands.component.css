@@ -1,11 +1,9 @@
 table {
     width: 100%;
-  }
+}
   
-.mat-form-field {
-    font-size: 14px;
+.full-width-form-field {
     width: 100%;
-    max-width: 256px;
 }
   
 td, th {
@@ -16,17 +14,6 @@ td, th {
     margin: 20px;
 }
 
-.filters-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 62px;
-    padding: 0 8px;
-    flex-wrap: wrap-reverse;
-    background-color: white;
-    margin-bottom: 20px;
-}
-
-.spacer {
-    flex: 1 1 auto;
+.brands-card {
+    margin: 15px;
 }
