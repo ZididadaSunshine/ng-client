@@ -18,10 +18,10 @@ const appRoutes: Routes = [
     /** Redirect to home if no eligable route */
     { path: '', component: HomeComponent, canActivate: [AuthorizationGuard] },
     { path: 'about', component: AboutComponent, canActivate: [AuthorizationGuard] },
-    { path: 'brand', component: BrandComponent, canActivate: [AuthorizationGuard] },
+    { path: 'brands', component: BrandsComponent, canActivate: [AuthorizationGuard] },
+    { path: 'brands/:id', component: BrandComponent, canActivate: [AuthorizationGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'brands', component: BrandsComponent },
     { path: '**', redirectTo: '' }
 ];
 

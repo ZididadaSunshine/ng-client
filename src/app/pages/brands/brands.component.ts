@@ -3,6 +3,7 @@ import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar, MatDialog } fro
 import { BrandService } from 'src/app/services';
 import { Brand } from '../../models';
 import { BrandDialogComponent } from '../../dialogs/brand-dialog/brand-dialog.component';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-brands',
@@ -10,7 +11,10 @@ import { BrandDialogComponent } from '../../dialogs/brand-dialog/brand-dialog.co
   styleUrls: ['./brands.component.css']
 })
 export class BrandsComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'score', 'actions'];
+  displayedColumns: string[];
+  handsetColumns: string[] = ['name'];
+  desktopColumns: string[] = ['name', 'score', 'actions'];
+
   dataSource;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -18,10 +22,14 @@ export class BrandsComponent implements OnInit {
 
   constructor(private brandService: BrandService,
               private snackbar: MatSnackBar,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private breakpointObserver: BreakpointObserver) { }
 
   ngOnInit() {
     this.loadBrands();
+    // Hide / display columns depending on observed breakpoint
+    this.breakpointObserver.observe(Breakpoints.Handset)
+      .subscribe((({ matches }) => this.displayedColumns = matches === true ? this.handsetColumns : this.desktopColumns));
   }
 
   loadBrands() {
