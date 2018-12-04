@@ -58,6 +58,7 @@ import { AppendPipe } from './pipes/append/append.pipe';
 import { BrandsComponent } from './pages/brands/brands.component';
 import { BrandDialogComponent } from './dialogs/brand-dialog/brand-dialog.component';
 import { HttpErrorPipe } from './pipes/http-error/http-error.pipe';
+import { SynonymsComponent } from './partials/synonyms/synonyms.component';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('en');
@@ -82,6 +83,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     BrandsComponent,
     BrandDialogComponent,
     HttpErrorPipe,
+    SynonymsComponent,
   ],
   entryComponents: [
     BrandDialogComponent

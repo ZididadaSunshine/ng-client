@@ -5,3 +5,10 @@ html, body { height: 100%; }
 body { margin: 0; font-family: 'Roboto', sans-serif; }
 
 .flex { display: flex; }
+.offset {
+    margin: 1rem;
+}
+  
+.inset {
+    padding: 1rem;
+}

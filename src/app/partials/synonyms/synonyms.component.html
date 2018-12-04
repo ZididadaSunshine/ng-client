@@ -1,0 +1,30 @@
+<div class="mat-elevation-z8 inset offset" [ngStyle]="{'max-width': maxWidth}" *ngIf="synonyms$ | async as synonyms">
+  <h3 class="mat-h3">{{ "synonyms" | translate | capitalize }}</h3>
+  <form class="synonym-form" (ngSubmit)="addSynonym()">
+    <mat-form-field class="full-width">
+      <input type="tel" matInput [placeholder]="'synonym' | translate | capitalize">
+      <mat-icon matSuffix>add_comment</mat-icon>
+    </mat-form-field>
+  </form>
+
+  <table style="width:100%" cellpadding="10">
+    <tr *ngFor="let synonym of synonyms">
+      <td>{{ synonym.synonym }}</td>
+      <td align="right">
+        <button mat-icon-button [matMenuTriggerFor]="actions">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #actions="matMenu">
+          <button mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span>{{ "edit" | translate | capitalize }}</span>
+          </button>
+          <button mat-menu-item (click)="onDelete(synonym)">
+            <mat-icon>remove</mat-icon>
+            <span>{{ "remove" | translate | capitalize }}</span>
+          </button>
+        </mat-menu>
+      </td>
+    </tr>
+  </table>
+</div>

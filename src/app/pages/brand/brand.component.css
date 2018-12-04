@@ -1,29 +1,27 @@
-.grid-container {
-  margin: 20px;
-}
-
-#top-toolbar {
-  height: 128px;
-}
-
-.full-width-form-field {
+.container {
   width: 100%;
 }
 
-.dashboard-card {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
+.grid {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.more-button {
-  position: absolute;
-  top: 5px;
-  right: 10px;
+.full-width {
+  width: 100%;
 }
 
-.dashboard-card-content {
-  text-align: center;
+.col {
+  flex: 1;
+}
+
+.col-1 {
+  flex: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 400px) {
+  .grid .col {
+    width: 100%;
+  }
 }

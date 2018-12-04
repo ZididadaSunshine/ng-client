@@ -34,7 +34,7 @@ export class BrandService {
   }
 
   getSynonyms(brandId: number): Observable<Synonym[]> {
-    return this.http.get<Synonym[]>(`${this.path}/${brandId}`);
+    return this.http.get<Synonym[]>(`${this.path}/${brandId}/synonyms`);
   }
 
   createSynonym(brandId: number, synonym: Synonym): Observable<any> {
