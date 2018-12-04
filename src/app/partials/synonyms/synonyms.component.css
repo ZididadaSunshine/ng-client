@@ -1,8 +1,15 @@
 table {
-    border-collapse: collapse;
+    width: 100%;
 }
 
+td, th {
+    width: 25%;
+}
 
-tr:hover {
-    background-color: lightgray;
+.mat-table {
+    background-color: inherit;
+}
+
+.mat-paginator {
+    background-color: inherit;
 }

@@ -1,7 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { BrandService } from '../../services';
 import { Synonym } from '../../models';
 import { Observable } from 'rxjs';
+import { MatTableDataSource, MatPaginator, MatSnackBar } from '@angular/material';
+import { HttpErrorPipe } from '../../pipes/http-error/http-error.pipe';
+import { CapitalizePipe, TranslatePipe } from '../../pipes';
 
 @Component({
   selector: 'app-synonyms',
@@ -11,34 +14,80 @@ import { Observable } from 'rxjs';
 export class SynonymsComponent implements OnInit {
 
   @Input()
-  brandId: number
+  brandId: number;
 
   @Input()
-  maxWidth: string
+  maxWidth: string;
 
-  synonyms$: Observable<Synonym[]>
+  dataSource: MatTableDataSource<Synonym>;
+  displayedColumns: string[] = ['synonym', 'actions'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  synonymfield: string;
 
   constructor(
-    private brandService: BrandService
+    private brandService: BrandService,
+    private snackbar: MatSnackBar,
+    private httperror: HttpErrorPipe,
+    private capitalize: CapitalizePipe,
+    private translate: TranslatePipe
   ) { }
 
   ngOnInit() {
     if (this.brandId == null) throw new Error("Attribute 'brandId' is required");
-    this.synonyms$ = this.brandService.getSynonyms(this.brandId);
+    this.loadSynonyms();
   }
 
-  update() {
-  }
-
-  fetchSynonyms() {
-    
+  loadSynonyms() {
+    this.brandService.getSynonyms(this.brandId).subscribe(
+      synonyms => {
+        this.dataSource = new MatTableDataSource(synonyms);
+        this.dataSource.paginator = this.paginator;
+      },
+      error => {
+        this.snackbar.open(
+          this.httperror.transform(error)
+        )
+      }
+    )
   }
 
   onDelete(synonym: Synonym) {
     this.brandService.deleteSynonym(this.brandId, synonym.synonym).subscribe(
-      () => (this.synonyms$ = this.brandService.getSynonyms(this.brandId)),
-      error => console.log(error)
-    ).unsubscribe();
+      () => {
+        this.paginator.firstPage();
+        this.loadSynonyms();
+        this.snackbar.open(
+          this.capitalize.transform(
+            this.translate.transform('Synonym %s deleted', [synonym.synonym])
+          )
+        );
+      },
+      error => this.snackbar.open(
+        this.httperror.transform(error)
+      )
+    );
+  }
+
+  onAdd() {
+    const synonym = new Synonym();
+    synonym.synonym = this.synonymfield;
+
+    this.brandService.createSynonym(this.brandId, synonym).subscribe(
+      () => {
+        this.paginator.lastPage();
+        this.loadSynonyms();
+        this.snackbar.open(
+          this.capitalize.transform(
+            this.translate.transform('Synonym %s added', [synonym.synonym])
+          )
+        )
+        this.synonymfield = '';
+      },
+      error => this.snackbar.open(
+        this.httperror.transform(error)
+      )
+    );
   }
 
 }

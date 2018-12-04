@@ -1,30 +1,31 @@
-<div class="mat-elevation-z8 inset offset" [ngStyle]="{'max-width': maxWidth}" *ngIf="synonyms$ | async as synonyms">
+<div class="mat-elevation-z8 inset offset" [ngStyle]="{'max-width': maxWidth}">
   <h3 class="mat-h3">{{ "synonyms" | translate | capitalize }}</h3>
-  <form class="synonym-form" (ngSubmit)="addSynonym()">
+
+  <form (ngSubmit)="onAdd()">
     <mat-form-field class="full-width">
-      <input type="tel" matInput [placeholder]="'synonym' | translate | capitalize">
-      <mat-icon matSuffix>add_comment</mat-icon>
+      <input type="text" name="synonym" [(ngModel)]="synonymfield" matInput [placeholder]="'add synonym' | translate | capitalize">
     </mat-form-field>
   </form>
 
-  <table style="width:100%" cellpadding="10">
-    <tr *ngFor="let synonym of synonyms">
-      <td>{{ synonym.synonym }}</td>
-      <td align="right">
-        <button mat-icon-button [matMenuTriggerFor]="actions">
-          <mat-icon>more_vert</mat-icon>
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="synonym">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row"> {{row.synonym}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row" align="right">
+        <button mat-icon-button color="warn" (click)="onDelete(row)">
+          <mat-icon>remove_circle</mat-icon>
         </button>
-        <mat-menu #actions="matMenu">
-          <button mat-menu-item>
-            <mat-icon>edit</mat-icon>
-            <span>{{ "edit" | translate | capitalize }}</span>
-          </button>
-          <button mat-menu-item (click)="onDelete(synonym)">
-            <mat-icon>remove</mat-icon>
-            <span>{{ "remove" | translate | capitalize }}</span>
-          </button>
-        </mat-menu>
       </td>
-    </tr>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" style="display: none;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

@@ -41,7 +41,7 @@ export class BrandService {
     return this.http.post(`${this.path}/${brandId}/synonyms`, synonym);
   }
 
-  deleteSynonym(brandId: number, synonym: String): Observable<any> {
-    return this.http.delete(`${this.path}/${brandId}/${synonym}`);
+  deleteSynonym(brandId: number, synonym: string): Observable<any> {
+    return this.http.delete(`${this.path}/${brandId}/synonyms/${synonym}`);
   }
 }

@@ -1,3 +1,3 @@
 export class Synonym {
-  synonym: String;
+  synonym: string;
 }

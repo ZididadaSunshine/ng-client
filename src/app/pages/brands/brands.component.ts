@@ -53,9 +53,14 @@ export class BrandsComponent implements OnInit {
       });
   }
 
-  openBrandDialog() {
+  onEdit(brand: Brand) {
+    this.openBrandDialog(brand);
+  }
+
+  openBrandDialog(brand?: Brand) {
     const dialogRef = this.dialog.open(BrandDialogComponent, {
       width: '250px',
+      data: brand
     });
 
     dialogRef.afterClosed().subscribe(result => {

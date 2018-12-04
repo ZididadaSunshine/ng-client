@@ -12,3 +12,7 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 .inset {
     padding: 1rem;
 }
+
+.full-width {
+    width: 100%;
+}

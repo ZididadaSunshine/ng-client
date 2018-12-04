@@ -31,10 +31,19 @@
             </button>
           </th>
           <td mat-cell align="right" *matCellDef="let row">
-
-            <button mat-icon-button color="warn" (click)="onDelete(row.id)">
-              <mat-icon>remove_circle</mat-icon>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
             </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="onEdit(row)">
+                <mat-icon>edit</mat-icon>
+                <span>{{ "edit" | translate | capitalize }}</span>
+              </button>
+              <button mat-menu-item (click)="onDelete(row.id)">
+                <mat-icon>remove_circle</mat-icon>
+                <span>{{ "remove" | translate | capitalize }}</span>
+              </button>
+            </mat-menu>
 
           </td>
         </ng-container>
