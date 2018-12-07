@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointState, BreakpointObserver } from '@angular/cdk/layout';
 import { Brand, Synonym } from '../../models';
-import { BrandService } from '../../services';
+import { BrandService, StatisticsService } from '../../services';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -12,7 +12,6 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   templateUrl: './brand.component.html',
   styleUrls: ['./brand.component.css']
 })
-
 export class BrandComponent implements OnInit {
   brand$: Observable<Brand>;
   synonyms$: Observable<Synonym[]>;
@@ -126,6 +125,7 @@ export class BrandComponent implements OnInit {
   lineChartType = 'line';
 
   ngOnInit(): void {
+    this.statisticsService.get('2018-12-03T10:00:00', '2018-12-06T10:00:00', 'hour', 51);
     this.route.paramMap.subscribe(
       params => {
         const id = Number(params.get('id'));
@@ -153,7 +153,8 @@ export class BrandComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private brandService: BrandService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private statisticsService: StatisticsService) { }
 
   // events
   chartClicked(e: any): void {
