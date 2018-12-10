@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Brand, Synonym } from '../../models';
 import { BrandService, StatisticsService } from '../../services';
-import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import * as shape from 'd3-shape';
 
 @Component({
@@ -12,42 +12,38 @@ import * as shape from 'd3-shape';
   styleUrls: ['./brand.component.css']
 })
 export class BrandComponent implements OnInit {
-  brand$: Observable<Brand>;
-  synonyms$: Observable<Synonym[]>;
-
   brand: Brand;
-  synonyms: Synonym[];
+
+  _chartDataSource = new BehaviorSubject<string>(null);
+  chartData$ = this._chartDataSource.asObservable();
+
 
   // Number of columns per row
   cols: number;
+  data: string;
+
+  from: Date = new Date();
+  to: Date = new Date();
+  granularity: string = 'day';
+
 
 
   ngOnInit(): void {
-    
+    this.from.setDate(this.to.getDate() - 7);
 
-    this.route.paramMap.subscribe(
-      params => {
-        const id = Number(params.get('id'));
-        this.statisticsService.get('2018-12-04T12:00:00', '2018-12-10T10:00:00', 'day', id).subscribe(
-          (data) => {
-            this.chartData = this.makeDatasets(data);
-          }
-        );
-        this.brand$ = this.brandService.get(id);
-        this.synonyms$ = this.brandService.getSynonyms(id);
-      },
-      error => console.log(error)
-    );
+    this.route.paramMap.subscribe(paramMap => {
+      const id = Number(paramMap.get('id'));
 
-    this.brand$.subscribe(
-      brand => (this.brand = brand),
-      error => console.log(error)
-    );
-
-    this.synonyms$.subscribe(
-      synonyms => (this.synonyms = synonyms),
-      error => console.log(error)
-    );
+      this.brandService.get(id).subscribe(
+        brand => {
+          this.brand = brand;
+          this.fetchStatistics();
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    });
 
     // Set the number of cols based on breakpoint
     this.breakpointObserver.observe(Breakpoints.Handset)
@@ -60,68 +56,17 @@ export class BrandComponent implements OnInit {
     private route: ActivatedRoute,
     private statisticsService: StatisticsService) { }
 
-  // events
-  chartClicked(e: any): void {
-    console.log(e);
+
+  fetchStatistics() {
+    this.from = new Date(this.from);
+    this.to = new Date(this.to);
+    
+    this.statisticsService.get(this.from.toJSON(), this.to.toJSON(), this.granularity, this.brand.id).subscribe(
+      data => this._chartDataSource.next(data),
+      error => console.log(error)
+    );
   }
 
-  getKeywords(label, timestamp : Date) {
-    const series: any[] = this.chartData.find(x => x.name === label).series;
-    const statistics = series.find(x => x.name.getTime() === timestamp.getTime()).statistics;
- 
-    return statistics;
-  }
 
-  getRandomColor() {
-    const r = function () { return Math.floor(Math.random() * 256); };
-    return 'rgb(' + r() + ',' + r() + ',' + r() + ')';
-  }
 
-  // options
-  showXAxis = true;
-  showYAxis = true;
-  gradient = false;
-  showLegend = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Time';
-  showYAxisLabel = true;
-  yAxisLabel = 'Sentiment';
-  timeline = true;
-  curve: any = shape.curveMonotoneX; 
-
-  colorScheme = {
-    domain: []
-  };
-
-  chartData: any[];
-
-  makeDatasets(data) {
-    const datasets = [];
-
-    for (let synonym of Object.keys(data)) {
-      const entries = [];
-      for (let timestamp of Object.keys(data[synonym])) {
-        let tmp = data[synonym][timestamp];
-        let sentiment = tmp.sentiment;
-        let statistics = tmp.statistics;
-
-        entries.push({
-          name: new Date(timestamp),
-          value: sentiment,
-          statistics: statistics
-        });
-      }
-
-      this.colorScheme.domain.push(this.getRandomColor());
-
-      datasets.push({
-        name: synonym,
-        series: entries
-      });
-    }
-
-    console.log(datasets);
-
-    return datasets;
-  }
 }

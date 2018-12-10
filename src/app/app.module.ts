@@ -39,6 +39,7 @@ import {
   MatProgressSpinnerModule,
   MatSnackBarModule,
   MatDialogModule,
+  MatSelectModule,
   MAT_SNACK_BAR_DEFAULT_OPTIONS
 } from '@angular/material';
 
@@ -60,6 +61,8 @@ import { BrandsComponent } from './pages/brands/brands.component';
 import { BrandDialogComponent } from './dialogs/brand-dialog/brand-dialog.component';
 import { HttpErrorPipe } from './pipes/http-error/http-error.pipe';
 import { SynonymsComponent } from './partials/synonyms/synonyms.component';
+import { LineChartComponent } from './charts/line-chart/line-chart.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('en');
@@ -85,6 +88,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
     BrandDialogComponent,
     HttpErrorPipe,
     SynonymsComponent,
+    LineChartComponent,
+    NotFoundComponent,
   ],
   entryComponents: [
     BrandDialogComponent
@@ -104,6 +109,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
+    MatSelectModule,
     MatExpansionModule,
     Routing,
     MatTableModule,

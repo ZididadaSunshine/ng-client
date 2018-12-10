@@ -1,0 +1,35 @@
+<div style="width: 100%; height: 100%;">
+  <ngx-charts-line-chart [scheme]="colorScheme" [results]="chartData" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis"
+    [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel" [autoScale]="autoScale" [timeline]="timeline" [curve]="curve" (select)="onSelect($event)">
+    <ng-template #tooltipTemplate let-model="model">
+
+      <div *ngIf="this.getStatistics(model.series, model.name) as statistics" style="text-align: left; ">
+        <div *ngIf="statistics.positive as positive">
+          <dl>
+            <dt>{{ "positive" | translate | capitalize }}</dt>
+            <dd>
+              <p>{{ "posts" | translate | capitalize }}: {{positive.posts}}</p>
+              <p>{{ "keywords" | translate | capitalize }}:</p>
+              <ol>
+                <li *ngFor="let keyword of positive.keywords">{{keyword}}</li>
+              </ol>
+            </dd>
+          </dl>
+        </div>
+        <div *ngIf="statistics.negative as negative">
+          <dl>
+            <dt>{{ "negative" | translate | capitalize }}</dt>
+            <dd>
+              <p>{{ "posts" | translate | capitalize }}: {{negative.posts}}</p>
+              <p>{{ "keywords" | translate | capitalize }}:</p>
+              <ol>
+                <li *ngFor="let keyword of negative.keywords">{{keyword}}</li>
+              </ol>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </ng-template>
+  </ngx-charts-line-chart>
+</div>

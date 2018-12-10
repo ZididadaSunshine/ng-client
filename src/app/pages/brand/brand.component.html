@@ -1,55 +1,56 @@
-<div class="container" *ngIf="brand$ | async as brand">
-  <h1 class="mat-h1 offset">{{ brand.name }}</h1>
+<ng-container *ngIf="brand">
+  <mat-toolbar color="primary" class="mat-elevation-z6">
+    <span>{{ brand.name }}</span>
 
-  <div class="grid">
-    <div class="col col-1">
-      <div class="mat-elevation-z8 inset offset" style="height: 400px">
-        <!-- <canvas baseChart *ngIf="chartData" height="300" [datasets]="chartData" [options]="chartOptions"
-          [chartType]="chartType" (chartClick)="chartClicked($event)"></canvas> -->
-        <div style="width: 100%; height: 100%;">
-          <ngx-charts-line-chart [scheme]="colorScheme" [results]="chartData" [gradient]="gradient" [xAxis]="showXAxis"
-            [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
-            [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [autoScale]="autoScale" [timeline]="timeline" [curve]="curve"
-            (select)="onSelect($event)">
-            <ng-template #tooltipTemplate let-model="model">
+    <!-- This fills the remaining space of the current row -->
+    <span class="fill-remaining-space"></span>
+    <mat-form-field>
+      <input matInput [ngModel]="from | date:'yyyy-MM-dd'" (ngModelChange)="from = $event" type="date" name="fromDate"
+        required />
+    </mat-form-field>
+    <span>&nbsp;-&nbsp;</span>
+    <mat-form-field>
+      <input matInput [ngModel]="to | date:'yyyy-MM-dd'" (ngModelChange)="to = $event" type="date" name="toDate"
+        required />
+    </mat-form-field>
+    <span>&nbsp;</span>
+    <mat-form-field>
+      <mat-select [(ngModel)]="granularity">
+        <mat-option value="hour">
+          hour
+        </mat-option>
+        <mat-option value="day">
+          day
+        </mat-option>
+        <mat-option value="halfday">
+          halfday
+        </mat-option>
+        <mat-option value="week">
+          week
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-              <div *ngIf="this.getKeywords(model.series, model.name) as statistics" style="text-align: left; ">
-                <div *ngIf="statistics.positive as positive">
-                  <dl>
-                    <dt>{{ "positive" | translate | capitalize }}</dt>
-                    <dd>
-                      <p>{{ "posts" | translate | capitalize }}: {{positive.posts}}</p>
-                      <p>{{ "keywords" | translate | capitalize }}:</p>
-                      <ol>
-                        <li *ngFor="let keyword of positive.keywords">{{keyword}}</li>
-                      </ol>
-                    </dd>
-                  </dl>
-                </div>
-                <div *ngIf="statistics.negative as negative">
-                  <dl>
-                    <dt>{{ "negative" | translate | capitalize }}</dt>
-                    <dd>
-                      <p>{{ "posts" | translate | capitalize }}: {{negative.posts}}</p>
-                      <p>{{ "keywords" | translate | capitalize }}:</p>
-                      <ol>
-                        <li *ngFor="let keyword of negative.keywords">{{keyword}}</li>
-                      </ol>
-                    </dd>
-                  </dl>
-                </div>
-              </div>
-            </ng-template>
-          </ngx-charts-line-chart>
+    <button mat-icon-button (click)="fetchStatistics()">
+      <mat-icon aria-label="refresh graphs button">refresh</mat-icon>
+    </button>
+
+  </mat-toolbar>
 
 
+  <div class="container">
+
+    <div class="grid">
+      <div class="col col-1" *ngIf="chartData$ | async as chartData">
+        <div class="mat-elevation-z8 inset offset" style="height: 400px">
+          <app-line-chart [data]="chartData"></app-line-chart>
         </div>
       </div>
-    </div>
 
-    <div class="col">
-      <app-synonyms [brandId]="brand.id" maxWidth="400px"></app-synonyms>
-    </div>
+      <div class="col">
+        <app-synonyms [brandId]="brand.id" maxWidth="400px"></app-synonyms>
+      </div>
 
+    </div>
   </div>
-</div>
+</ng-container>

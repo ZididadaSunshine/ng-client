@@ -11,6 +11,7 @@ import {
 
 import { AuthorizationGuard } from './guards';
 import { BrandsComponent } from './pages/brands/brands.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const appRoutes: Routes = [
     // { path: '', component: WelcomeComponent },
@@ -22,7 +23,8 @@ const appRoutes: Routes = [
     { path: 'brands/:id', component: BrandComponent, canActivate: [AuthorizationGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: '**', redirectTo: '' }
+    { path: '404', component: NotFoundComponent },
+    { path: '**', redirectTo: '/404' }
 ];
 
 export const Routing = RouterModule.forRoot(appRoutes);
