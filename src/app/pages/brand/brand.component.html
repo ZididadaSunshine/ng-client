@@ -1,46 +1,58 @@
+<ng-template #filters>
+  <mat-form-field>
+    <input matInput [ngModel]="from | date:'yyyy-MM-dd'" (ngModelChange)="from = $event" type="date" name="fromDate"
+      required />
+  </mat-form-field>
+  <span>&nbsp;-&nbsp;</span>
+  <mat-form-field>
+    <input matInput [ngModel]="to | date:'yyyy-MM-dd'" (ngModelChange)="to = $event" type="date" name="toDate" required />
+  </mat-form-field>
+  <span>&nbsp;</span>
+  <mat-form-field>
+    <mat-select [(ngModel)]="granularity">
+      <mat-option value="hour">
+        hour
+      </mat-option>
+      <mat-option value="day">
+        day
+      </mat-option>
+      <mat-option value="halfday">
+        halfday
+      </mat-option>
+      <mat-option value="week">
+        week
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-icon-button (click)="fetchStatistics()">
+    <mat-icon aria-label="refresh graphs button">refresh</mat-icon>
+  </button>
+</ng-template>
+
 <ng-container *ngIf="brand">
-  <mat-toolbar color="primary" class="mat-elevation-z6 flex">
+  <mat-toolbar color="primary">
     <span>{{ brand.name }}</span>
 
     <!-- This fills the remaining space of the current row -->
     <span class="fill-remaining-space"></span>
-    <mat-form-field>
-      <input matInput [ngModel]="from | date:'yyyy-MM-dd'" (ngModelChange)="from = $event" type="date" name="fromDate"
-        required />
-    </mat-form-field>
-    <span>&nbsp;-&nbsp;</span>
-    <mat-form-field>
-      <input matInput [ngModel]="to | date:'yyyy-MM-dd'" (ngModelChange)="to = $event" type="date" name="toDate"
-        required />
-    </mat-form-field>
-    <span>&nbsp;</span>
-    <mat-form-field>
-      <mat-select [(ngModel)]="granularity">
-        <mat-option value="hour">
-          hour
-        </mat-option>
-        <mat-option value="day">
-          day
-        </mat-option>
-        <mat-option value="halfday">
-          halfday
-        </mat-option>
-        <mat-option value="week">
-          week
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <button mat-icon-button (click)="fetchStatistics()">
-      <mat-icon aria-label="refresh graphs button">refresh</mat-icon>
-    </button>
+    <div *ngIf="(isHandset$ | async); else filters">
+      <button mat-icon-button (click)="showFilters = !showFilters">
+        <mat-icon aria-label="display filters button">settings</mat-icon>
+      </button>
+    </div>
 
   </mat-toolbar>
-
 
   <div class="container">
 
     <div class="grid">
+      <div class="col col-1" *ngIf="(isHandset$ | async)">
+        <div [@openClose]="showFilters ? 'open' : 'closed'" class="mat-elevation-z8 inset offset">
+          asdfdsaf
+        </div>
+      </div>
+
       <div class="col col-1" *ngIf="chartData$ | async as chartData">
         <div class="mat-elevation-z8 inset offset" style="height: 400px">
           <app-line-chart [data]="chartData"></app-line-chart>

@@ -5,11 +5,31 @@ import { BrandService, StatisticsService } from '../../services';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import * as shape from 'd3-shape';
+import { map } from 'rxjs/operators';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-pages/brand',
   templateUrl: './brand.component.html',
-  styleUrls: ['./brand.component.css']
+  styleUrls: ['./brand.component.css'],
+  animations: [
+    trigger('openClose', [
+      // ...
+      state('open', style({
+        opacity: 1,
+      })),
+      state('closed', style({
+        opacity: 0,
+        display: 'none',
+      })),
+      transition('open => closed', [
+        animate('1s')
+      ]),
+      transition('closed => open', [
+        animate('0.5s')
+      ]),
+    ]),
+  ],
 })
 export class BrandComponent implements OnInit {
   brand: Brand;
@@ -22,6 +42,11 @@ export class BrandComponent implements OnInit {
   from: Date = new Date();
   to: Date = new Date();
   granularity: string = 'day';
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
 
   ngOnInit(): void {
     this.from.setDate(this.to.getDate() - 7);
@@ -55,7 +80,7 @@ export class BrandComponent implements OnInit {
   fetchStatistics() {
     this.from = new Date(this.from);
     this.to = new Date(this.to);
-    
+
     this.statisticsService.get(this.from.toJSON(), this.to.toJSON(), this.granularity, this.brand.id).subscribe(
       data => this._chartDataSource.next(data),
       error => console.log(error)
