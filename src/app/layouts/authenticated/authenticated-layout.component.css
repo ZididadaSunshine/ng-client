@@ -4,8 +4,9 @@
 
 
 .sidenav {
-    min-width: 250px;
+    min-width: 175px;
 }
+
 
 .mat-toolbar.mat-primary {
     position: sticky;

@@ -17,16 +17,11 @@ export class BrandComponent implements OnInit {
   _chartDataSource = new BehaviorSubject<string>(null);
   chartData$ = this._chartDataSource.asObservable();
 
-
   // Number of columns per row
   cols: number;
-  data: string;
-
   from: Date = new Date();
   to: Date = new Date();
   granularity: string = 'day';
-
-
 
   ngOnInit(): void {
     this.from.setDate(this.to.getDate() - 7);

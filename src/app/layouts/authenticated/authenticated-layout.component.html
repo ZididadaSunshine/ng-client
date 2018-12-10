@@ -1,7 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) || (isPortrait$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) || (isPortrait$ | async) ? 'over' : 'side'" [opened]="!((isHandset$ | async) || (isPortrait$ | async))">
-        <mat-toolbar color="primary" class="mat-elevation-z6">
+    <mat-sidenav #drawer fixedInViewport="true" [attr.role]="(isHandset$ | async) || (isPortrait$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) || (isPortrait$ | async) ? 'over' : 'side'" [opened]="!((isHandset$ | async) || (isPortrait$ | async))" class="sidenav mat-elevation-z6">
+        <mat-toolbar color="primary">
             <div *ngIf="(isHandset$ | async) || (isPortrait$ | async)">
                 <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
                     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
