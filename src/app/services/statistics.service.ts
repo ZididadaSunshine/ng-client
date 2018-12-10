@@ -11,7 +11,7 @@ export class StatisticsService {
 
   constructor(private http: HttpClient) {}
 
-  get(from: string, to: string, granularity: string, brand: number): Observable<any> {
-    return this.http.post(`${this.path}`, {from, to, granularity, brand});
+  get(from: string, to: string, granularity: string, brandId: number): Observable<any> {
+    return this.http.post(`${this.path}`, {from, to, granularity, 'brand_id': brandId});
   }
 }

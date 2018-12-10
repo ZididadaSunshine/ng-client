@@ -48,6 +48,7 @@ import {
 } from './layouts';
 
 import { ChartsModule } from 'ng2-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors';
@@ -114,7 +115,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatDialogModule,
-    ChartsModule
+    NgxChartsModule
   ],
 
   exports: [MatProgressSpinnerModule],
