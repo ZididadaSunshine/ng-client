@@ -62,7 +62,7 @@ export class BrandComponent implements OnInit {
         error => {
           console.log(error);
         }
-      )
+      );
     });
 
     // Set the number of cols based on breakpoint
