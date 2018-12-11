@@ -37,8 +37,7 @@ export class BrandComponent implements OnInit {
   _chartDataSource = new BehaviorSubject<string>(null);
   chartData$ = this._chartDataSource.asObservable();
 
-  // Number of columns per row
-  cols: number;
+
   from: Date = new Date();
   to: Date = new Date();
   granularity: string = 'day';
@@ -65,9 +64,6 @@ export class BrandComponent implements OnInit {
       )
     });
 
-    // Set the number of cols based on breakpoint
-    this.breakpointObserver.observe(Breakpoints.Handset)
-      .subscribe((({ matches }) => this.cols = matches === true ? 1 : 2));
   }
 
   constructor(

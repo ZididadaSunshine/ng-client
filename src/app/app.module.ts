@@ -63,6 +63,7 @@ import { HttpErrorPipe } from './pipes/http-error/http-error.pipe';
 import { SynonymsComponent } from './partials/synonyms/synonyms.component';
 import { LineChartComponent } from './charts/line-chart/line-chart.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NormalizedVerticalBarChartComponent } from './charts/normalized-vertical-bar-chart/normalized-vertical-bar-chart.component';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('en');
@@ -90,6 +91,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     SynonymsComponent,
     LineChartComponent,
     NotFoundComponent,
+    NormalizedVerticalBarChartComponent,
   ],
   entryComponents: [
     BrandDialogComponent

@@ -2,8 +2,7 @@
   <mat-toolbar color="primary">
     <span>{{ brand.name }}</span>
 
-    <!-- This fills the remaining space of the current row -->
-    <span class="fill-remaining-space"></span>
+    <span class="fill"></span>
     <button mat-icon-button (click)="showFilters = !showFilters">
       <mat-icon aria-label="display filters button">settings</mat-icon>
     </button>
@@ -11,8 +10,8 @@
   </mat-toolbar>
 
   <div class="container">
-
     <div class="grid">
+
       <div class="col col-1" [@openClose]="showFilters ? 'open' : 'closed'">
         <div class="mat-elevation-z8 inset offset flex">
           <mat-form-field>
@@ -41,23 +40,29 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <span class="fill-remaining-space"></span>
+          <span class="fill"></span>
           <button mat-flat-button (click)="fetchStatistics()">
             {{ "apply" | translate | capitalize }}
           </button>
         </div>
       </div>
 
-      <div class="col col-1" *ngIf="chartData$ | async as chartData">
+      <div class="row" *ngIf="chartData$ | async as chartData">
         <div class="mat-elevation-z8 inset offset" style="height: 400px">
           <app-line-chart [data]="chartData"></app-line-chart>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="chartData$ | async as chartData">
+        <div class="mat-elevation-z8 inset offset" style="height: 400px">
+          <app-normalized-vertical-bar-chart [data]="chartData"></app-normalized-vertical-bar-chart>
         </div>
       </div>
 
       <div class="col">
         <app-synonyms [brandId]="brand.id" maxWidth="400px"></app-synonyms>
       </div>
-
     </div>
+
   </div>
 </ng-container>

@@ -7,26 +7,16 @@
   flex-wrap: wrap;
 }
 
-.full-width {
-  width: 100%;
+.row {
+  flex: 100%;
+  max-width: 100%;
 }
 
 .col {
   flex: 1;
 }
 
-.col-1 {
-  flex: 100%;
-  max-width: 100%;
-}
-
-@media (max-width: 400px) {
-  .grid .col {
-    width: 100%;
-  }
-}
-
-.fill-remaining-space {
+.fill {
   /* This fills the remaining space, by using flexbox. 
      Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;

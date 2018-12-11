@@ -4,8 +4,7 @@ import { ColorService } from '../../services/color.service';
 
 @Component({
   selector: 'app-line-chart',
-  templateUrl: './line-chart.component.html',
-  styleUrls: ['./line-chart.component.css']
+  templateUrl: './line-chart.component.html'
 })
 export class LineChartComponent implements OnInit {
 
