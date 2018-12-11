@@ -61,7 +61,7 @@ export class BrandComponent implements OnInit {
         error => {
           console.log(error);
         }
-      )
+      );
     });
 
   }

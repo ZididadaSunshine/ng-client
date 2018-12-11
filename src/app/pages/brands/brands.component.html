@@ -19,9 +19,19 @@
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="score">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Score </th>
-          <td mat-cell *matCellDef="let row"> TBD% </td>
+        <ng-container matColumnDef="sentiment_average">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Sentiment (today) </th>
+          <td mat-cell *matCellDef="let row"> {{ row.sentiment_average ? (row.sentiment_average | number) : '-' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="sentiment_trend">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Sentiment trend (today) </th>
+          <td mat-cell *matCellDef="let row"> {{ row.sentiment_trend ? (row.sentiment_trend | number) : '-' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="posts">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Posts (today) </th>
+          <td mat-cell *matCellDef="let row"> {{ row.posts || '-' }} </td>
         </ng-container>
 
         <ng-container matColumnDef="actions">

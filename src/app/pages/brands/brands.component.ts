@@ -13,7 +13,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 export class BrandsComponent implements OnInit {
   displayedColumns: string[];
   handsetColumns: string[] = ['name'];
-  desktopColumns: string[] = ['name', 'score', 'actions'];
+  desktopColumns: string[] = ['name', 'sentiment_average', 'sentiment_trend', 'posts', 'actions'];
 
   dataSource;
 
