@@ -20,6 +20,8 @@ export class LineChartComponent implements OnInit {
   timeline = true;
   curve: any = shape.curveMonotoneX;
   chartData: any[];
+  yScaleMin = -0.5;
+  yScaleMax = 0.5;
   colorScheme = {
     domain: []
   };
@@ -30,29 +32,29 @@ export class LineChartComponent implements OnInit {
     const datasets = [];
     const synonyms = Object.keys(json);
 
-    for (let synonym of synonyms) {
+    for (const synonym of synonyms) {
       const entries = [];
       const timestamps = Object.keys(json[synonym]);
 
-      for (let timestamp of timestamps) {
-        let tmp = json[synonym][timestamp];
-        let sentiment = tmp.sentiment;
-        let statistics = tmp.statistics;
+      for (const timestamp of timestamps) {
+        const tmp = json[synonym][timestamp];
+        const sentiment = tmp.sentiment;
+        const statistics = tmp.statistics;
 
         entries.push({
           name: new Date(timestamp),
-          value: sentiment,
+          value: sentiment - 0.5,
           statistics: statistics
         });
       }
 
-      if (this.colorScheme.domain.length != synonyms.length) {
+      if (this.colorScheme.domain.length !== synonyms.length) {
         let color = '';
         do {
           color = this.colorService.random();
         }
         while (this.colorScheme.domain.find(x => x === color));
-        
+
         this.colorScheme.domain.push(color);
       }
 
@@ -68,14 +70,12 @@ export class LineChartComponent implements OnInit {
   getStatistics(label, timestamp : Date) {
     const series: any[] = this.chartData.find(x => x.name === label).series;
     const statistics = series.find(x => x.name.getTime() === timestamp.getTime()).statistics;
- 
+
     return statistics;
   }
-  
 
-  constructor(private colorService : ColorService) { }
+  constructor(private colorService: ColorService) { }
 
   ngOnInit() {
   }
-
 }
