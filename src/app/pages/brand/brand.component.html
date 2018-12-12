@@ -12,19 +12,17 @@
   <div class="container">
     <div class="grid">
 
-      <div class="col col-1" [@openClose]="showFilters ? 'open' : 'closed'">
+      <div class="row" [@openClose]="showFilters ? 'open' : 'closed'">
         <div class="mat-elevation-z8 inset offset flex">
-          <mat-form-field>
+          <mat-form-field class="col">
             <input matInput [ngModel]="from | date:'yyyy-MM-dd'" placeholder="{{ 'from' | capitalize | translate }}"
               (ngModelChange)="from = $event" type="date" name="fromDate" required />
           </mat-form-field>
-          <span>&nbsp;</span>
-          <mat-form-field>
+          <mat-form-field class="col">
             <input matInput [ngModel]="to | date:'yyyy-MM-dd'" placeholder="{{ 'to' | capitalize | translate }}"
               (ngModelChange)="to = $event" type="date" name="toDate" required />
           </mat-form-field>
-          <span>&nbsp;</span>
-          <mat-form-field>
+          <mat-form-field class="col">
             <mat-select [(ngModel)]="granularity" placeholder="{{ 'granularity' | capitalize | translate }}">
               <mat-option value="hour">
                 hour
@@ -59,7 +57,7 @@
         </div>
       </div>
 
-      <div class="col">
+      <div class="row">
         <app-synonyms [brandId]="brand.id" maxWidth="400px"></app-synonyms>
       </div>
     </div>
