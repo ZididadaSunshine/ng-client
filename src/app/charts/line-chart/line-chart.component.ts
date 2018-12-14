@@ -20,8 +20,8 @@ export class LineChartComponent implements OnInit {
   timeline = true;
   curve: any = shape.curveMonotoneX;
   chartData: any[];
-  yScaleMin = -0.5;
-  yScaleMax = 0.5;
+  yScaleMin = -1;
+  yScaleMax = 1;
   colorScheme = {
     domain: []
   };
@@ -43,7 +43,7 @@ export class LineChartComponent implements OnInit {
 
         entries.push({
           name: new Date(timestamp),
-          value: sentiment - 0.5,
+          value: (sentiment - 0.5) * 2,
           statistics: statistics
         });
       }
