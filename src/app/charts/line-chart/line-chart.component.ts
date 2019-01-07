@@ -16,12 +16,10 @@ export class LineChartComponent implements OnInit {
   showXAxisLabel = true;
   xAxisLabel = 'Time';
   showYAxisLabel = true;
-  yAxisLabel = 'Sentiment';
+  yAxisLabel = 'Sentiment (%)';
   timeline = true;
   curve: any = shape.curveMonotoneX;
   chartData: any[];
-  yScaleMin = -1;
-  yScaleMax = 1;
   colorScheme = {
     domain: []
   };
@@ -43,7 +41,7 @@ export class LineChartComponent implements OnInit {
 
         entries.push({
           name: new Date(timestamp),
-          value: (sentiment - 0.5) * 2,
+          value: sentiment * 100,
           statistics: statistics
         });
       }
