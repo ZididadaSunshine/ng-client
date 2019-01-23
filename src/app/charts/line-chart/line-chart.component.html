@@ -1,7 +1,7 @@
 <div style="width: 100%; height: 100%;">
   <ngx-charts-line-chart [scheme]="colorScheme" [results]="chartData" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis"
     [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
-    [yAxisLabel]="yAxisLabel" [timeline]="timeline" [curve]="curve">
+    [yAxisLabel]="yAxisLabel" [timeline]="timeline" [curve]="curve" [yScaleMin]="0" [yScaleMax]="100">
     <ng-template #tooltipTemplate let-model="model">
 
       <div *ngIf="this.getStatistics(model.series, model.name) as statistics" style="text-align: left; ">

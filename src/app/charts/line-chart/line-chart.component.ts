@@ -65,7 +65,7 @@ export class LineChartComponent implements OnInit {
     this.chartData = datasets;
   }
 
-  getStatistics(label, timestamp : Date) {
+  getStatistics(label, timestamp: Date) {
     const series: any[] = this.chartData.find(x => x.name === label).series;
     const statistics = series.find(x => x.name.getTime() === timestamp.getTime()).statistics;
 
